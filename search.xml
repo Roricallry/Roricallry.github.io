@@ -1,8 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Github_project_management</title>
+    <url>/2024/11/09/Github-project-management/</url>
+    <content><![CDATA[<p>​	如何将项目上传到github并进行管理?</p>
+<p>​	如何解决每次push都需要输入账号密码的问题？</p>
+<span id="more"></span>
+
+<blockquote>
+<p>Precondition:</p>
+<ol>
+<li>有一个github账号</li>
+<li>下载安装Git</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>github常用的两种连接方式：</p>
+<p>https连接，如：<code>https://github.com/Roricallry/handwriting-numerals-recognition.git</code></p>
+<p>ssh连接，如：<code>git@github.com:Roricallry/handwriting-numerals-recognition.git</code></p>
+<p>https连接每次都需要密码，ssh连接可以做到无密码连接</p>
+</blockquote>
+<p>Git常用指令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git init //把这个目录变成Git可以管理的仓库</span><br><span class="line">　　git add README.md //文件添加到仓库</span><br><span class="line">　　git add . //不但可以跟单一文件，还可以跟通配符，更可以跟目录。一个点就把当前目录下所有未追踪的文件全部add了 </span><br><span class="line">　　git commit -m &quot;first commit&quot; //把文件提交到仓库</span><br><span class="line">　　git remote add origin git@github.com:wangjiax9/practice.git //关联远程仓库</span><br><span class="line">　　git push -u origin master //把本地库的所有内容推送到远程库上</span><br><span class="line">　　</span><br><span class="line">Git复制指令(或者直接鼠标右键菜单栏选择)：</span><br><span class="line">复制：Ctrl+INSERT</span><br><span class="line">粘贴：Shift+INSERT</span><br></pre></td></tr></table></figure>
+
+<h3 id="项目上传"><a href="#项目上传" class="headerlink" title="项目上传"></a>项目上传</h3><h4 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h4><p>可分为两步，第一步是搭建本地仓库，第二步是关联上传到github项目仓库。</p>
+<h5 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h5><p>首先在本机项目文件夹下打开git-bash.exe</p>
+<ol>
+<li><p>执行指令： git init </p>
+<p>将这个目录变为Git可以管理的仓库，初始化成功后你会发现项目里多了一个隐藏文件夹.git<img src="/2024/11/09/Github-project-management/1.png" alt="屏幕截图 2024-11-09 224813"></p>
+</li>
+<li><p>执行指令：git add . </p>
+<p>后面的点是个通配符，把所有文件都添加到本地仓库，也可以跟单一文件名添加单一文件。<img src="/2024/11/09/Github-project-management/2.png" alt="屏幕截图 2024-11-09 225518"></p>
+</li>
+<li><p>执行指令：git commit -m “【注释】”</p>
+<p>把所有文件都提交到本地仓库，双引号里的内容是本次提交的注释<img src="/2024/11/09/Github-project-management/3.png" alt="屏幕截图 2024-11-09 230904"></p>
+</li>
+</ol>
+<h5 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h5><ol>
+<li><p>在github上新建一个repository，名字随便取，随后复制ssh仓库地址<img src="/2024/11/09/Github-project-management/4.png" alt="屏幕截图 2024-11-09 230527"></p>
+</li>
+<li><p>在本地之前那个bash窗口，执行：git remote add origin <a href="mailto:&#103;&#x69;&#116;&#64;&#103;&#105;&#116;&#x68;&#117;&#98;&#x2e;&#99;&#x6f;&#109;">&#103;&#x69;&#116;&#64;&#103;&#105;&#116;&#x68;&#117;&#98;&#x2e;&#99;&#x6f;&#109;</a>:Roricallry&#x2F;handwriting-numerals-recognition.git<img src="/2024/11/09/Github-project-management/5.png" alt="屏幕截图 2024-11-09 231016"></p>
+</li>
+<li><p>执行：git push -u origin master</p>
+<p>将本地仓库上传到GitHub对应项目仓库的master分支<img src="/2024/11/09/Github-project-management/6.png" alt="屏幕截图 2024-11-09 231210"></p>
+</li>
+</ol>
+<p>至此，项目文件已上传到Github上，可在对应项目的对应分支进行查看。</p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
-    <url>/2024/10/31/hello-world/</url>
+    <url>/2024/10/31/helloworld/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <span id="more"></span>
 
@@ -20,13 +71,10 @@
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 <h3 id="Illustrate"><a href="#Illustrate" class="headerlink" title="Illustrate"></a>Illustrate</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">![](image.png)</span><br></pre></td></tr></table></figure>
 
-<p><img src="/test.png"></p>
+<p><img src="/2024/10/31/helloworld/test.png" alt="1"></p>
 ]]></content>
-      <categories>
-        <category>test</category>
-      </categories>
       <tags>
-        <tag>hello</tag>
+        <tag>test</tag>
       </tags>
   </entry>
 </search>
