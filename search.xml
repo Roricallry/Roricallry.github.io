@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hello World</title>
+    <url>/2024/10/31/helloworld/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h3 id="Illustrate"><a href="#Illustrate" class="headerlink" title="Illustrate"></a>Illustrate</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">![](image.png)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/10/31/helloworld/test.png" alt="1"></p>
+]]></content>
+      <tags>
+        <tag>test</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Github_project_management</title>
     <url>/2024/11/09/Github-project-management/</url>
     <content><![CDATA[<p>​	关于将项目上传到github并进行管理，以及一些在使用过程中可能遇到的问题和解决方法。</p>
@@ -38,45 +64,28 @@
 <h5 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h5><ol>
 <li><p>在github上新建一个repository，名字随便取，随后复制ssh仓库地址<img src="/2024/11/09/Github-project-management/4.png" alt="屏幕截图 2024-11-09 230527"></p>
 </li>
-<li><p>在本地之前那个bash窗口，执行：git remote add origin <a href="mailto:&#x67;&#x69;&#x74;&#x40;&#103;&#x69;&#x74;&#x68;&#x75;&#x62;&#x2e;&#x63;&#111;&#109;">&#x67;&#x69;&#x74;&#x40;&#103;&#x69;&#x74;&#x68;&#x75;&#x62;&#x2e;&#x63;&#111;&#109;</a>:Roricallry&#x2F;handwriting-numerals-recognition.git<img src="/2024/11/09/Github-project-management/5.png" alt="屏幕截图 2024-11-09 231016"></p>
+<li><p>在本地之前那个bash窗口，执行：git remote add origin <a href="mailto:&#x67;&#x69;&#116;&#64;&#103;&#105;&#116;&#104;&#x75;&#x62;&#x2e;&#99;&#111;&#109;">&#x67;&#x69;&#116;&#64;&#103;&#105;&#116;&#104;&#x75;&#x62;&#x2e;&#99;&#111;&#109;</a>:Roricallry&#x2F;handwriting-numerals-recognition.git<img src="/2024/11/09/Github-project-management/5.png" alt="屏幕截图 2024-11-09 231016"></p>
 </li>
 <li><p>执行：git push -u origin master</p>
 <p>将本地仓库上传到GitHub对应项目仓库的master分支<img src="/2024/11/09/Github-project-management/6.png" alt="屏幕截图 2024-11-09 231210"></p>
 </li>
 </ol>
 <p>至此，项目文件已上传到Github上，可在对应项目的对应分支进行查看。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git pull origin master --rebase</span><br></pre></td></tr></table></figure>
+
+<p><code>git pull origin master --rebase</code> 会拉取远程分支的更改并在本地更改的基础上应用它们，这样可以减少冲突。</p>
+<h3 id="常见问题与解决方案"><a href="#常见问题与解决方案" class="headerlink" title="常见问题与解决方案"></a>常见问题与解决方案</h3><p>如果远程仓库的提交记录与本地记录不一致，会导致提交失败，此时需对本地仓库进行更新再重新修改上传(防止多人协作时版本不一)</p>
+<p>如果是个人开发，不考虑其他人，后面直接加   –force   （会覆盖远程仓库的历史）<img src="/2024/11/09/Github-project-management/7.png" alt="7"></p>
+<p>下面这个错误是因为本地分支的名称是 <code>master</code>，而不是 <code>main</code>。因此，Git无法找到一个名为 <code>main</code> 的分支来推送。<img src="/2024/11/09/Github-project-management/8.png" alt="8"></p>
+<p>解决办法有</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">\# 重命名本地的 master 分支为 main </span><br><span class="line">git branch -m master main </span><br><span class="line"><span class="comment"># 推送 main 分支到远程 </span></span><br><span class="line">git push -u origin main </span><br><span class="line"><span class="comment"># 设置默认分支为 main </span></span><br><span class="line">git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/main</span><br></pre></td></tr></table></figure>
+
+
+
 <p>单个文件不能超过50mb，本地提交记录中如果有超过50mb的文件的话也是会上传失败，建议（重开）重新克隆一个项目文件夹</p>
-<p>如果远程仓库的提交记录与本地记录不一致，会导致提交失败，此时需对本地仓库进行更新再重新修改上传(防止多人协作时版本不一)</p>
-<p>如果是个人开发，不考虑其他人，后面直接加   –force</p>
 ]]></content>
       <tags>
         <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2024/10/31/helloworld/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<h3 id="Illustrate"><a href="#Illustrate" class="headerlink" title="Illustrate"></a>Illustrate</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">![](image.png)</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2024/10/31/helloworld/test.png" alt="1"></p>
-]]></content>
-      <tags>
-        <tag>test</tag>
       </tags>
   </entry>
 </search>
