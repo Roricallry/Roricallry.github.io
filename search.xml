@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Github_project_management</title>
+    <url>/2024/11/09/Github-project-management/</url>
+    <content><![CDATA[<p>​	关于将项目上传到github并进行管理，以及一些在使用过程中可能遇到的问题和解决方法。</p>
+<span id="more"></span>
+
+<blockquote>
+<p>Precondition:</p>
+<ol>
+<li>有一个github账号</li>
+<li>下载安装Git</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>github常用的两种连接方式：</p>
+<p>https连接，如：<code>https://github.com/Roricallry/handwriting-numerals-recognition.git</code></p>
+<p>ssh连接，如：<code>git@github.com:Roricallry/handwriting-numerals-recognition.git</code></p>
+<p>https连接每次都需要密码，ssh连接可以做到无密码连接</p>
+</blockquote>
+<p>Git常用指令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git init //把这个目录变成Git可以管理的仓库</span><br><span class="line">　　git add README.md //文件添加到仓库</span><br><span class="line">　　git add . //不但可以跟单一文件，还可以跟通配符，更可以跟目录。一个点就把当前目录下所有未追踪的文件全部add了 </span><br><span class="line">　　git commit -m &quot;first commit&quot; //把文件提交到仓库</span><br><span class="line">　　git remote add origin git@github.com:wangjiax9/practice.git //关联远程仓库</span><br><span class="line">　　git push -u origin master //把本地库的所有内容推送到远程库上</span><br><span class="line">　　</span><br><span class="line">Git复制指令(或者直接鼠标右键菜单栏选择)：</span><br><span class="line">复制：Ctrl+INSERT</span><br><span class="line">粘贴：Shift+INSERT</span><br></pre></td></tr></table></figure>
+
+<h3 id="项目上传"><a href="#项目上传" class="headerlink" title="项目上传"></a>项目上传</h3><h4 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h4><p>可分为两步，第一步是搭建本地仓库，第二步是关联上传到github项目仓库。</p>
+<h5 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h5><p>首先在本机项目文件夹下打开git-bash.exe</p>
+<ol>
+<li><p>执行指令： git init </p>
+<p>将这个目录变为Git可以管理的仓库，初始化成功后你会发现项目里多了一个隐藏文件夹.git<img src="/2024/11/09/Github-project-management/1.png" alt="屏幕截图 2024-11-09 224813"></p>
+</li>
+<li><p>执行指令：git add . </p>
+<p>后面的点是个通配符，把所有文件都添加到本地仓库，也可以跟单一文件名添加单一文件。<img src="/2024/11/09/Github-project-management/2.png" alt="屏幕截图 2024-11-09 225518"></p>
+</li>
+<li><p>执行指令：git commit -m “【注释】”</p>
+<p>把所有文件都提交到本地仓库，双引号里的内容是本次提交的注释<img src="/2024/11/09/Github-project-management/3.png" alt="屏幕截图 2024-11-09 230904"></p>
+</li>
+</ol>
+<h5 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h5><ol>
+<li><p>在github上新建一个repository，名字随便取，随后复制ssh仓库地址<img src="/2024/11/09/Github-project-management/4.png" alt="屏幕截图 2024-11-09 230527"></p>
+</li>
+<li><p>在本地之前那个bash窗口，执行：git remote add origin <a href="mailto:&#103;&#x69;&#x74;&#64;&#x67;&#105;&#x74;&#x68;&#117;&#98;&#x2e;&#99;&#x6f;&#109;">&#103;&#x69;&#x74;&#64;&#x67;&#105;&#x74;&#x68;&#117;&#98;&#x2e;&#99;&#x6f;&#109;</a>:Roricallry&#x2F;handwriting-numerals-recognition.git<img src="/2024/11/09/Github-project-management/5.png" alt="屏幕截图 2024-11-09 231016"></p>
+</li>
+<li><p>执行：git push -u origin master</p>
+<p>将本地仓库上传到GitHub对应项目仓库的master分支<img src="/2024/11/09/Github-project-management/6.png" alt="屏幕截图 2024-11-09 231210"></p>
+</li>
+</ol>
+<p>至此，项目文件已上传到Github上，可在对应项目的对应分支进行查看。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git pull origin master --rebase</span><br></pre></td></tr></table></figure>
+
+<p><code>git pull origin master --rebase</code> 会拉取远程分支的更改并在本地更改的基础上应用它们，这样可以减少冲突。</p>
+<h3 id="常见问题与解决方案"><a href="#常见问题与解决方案" class="headerlink" title="常见问题与解决方案"></a>常见问题与解决方案</h3><p>如果远程仓库的提交记录与本地记录不一致，会导致提交失败，此时需对本地仓库进行更新再重新修改上传(防止多人协作时版本不一)</p>
+<p>如果是个人开发，不考虑其他人，后面直接加   –force   （会覆盖远程仓库的历史）<img src="/2024/11/09/Github-project-management/7.png" alt="7"></p>
+<p>下面这个错误是因为本地分支的名称是 <code>master</code>，而不是 <code>main</code>。因此，Git无法找到一个名为 <code>main</code> 的分支来推送。<img src="/2024/11/09/Github-project-management/8.png" alt="8"></p>
+<p>解决办法有</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">\# 重命名本地的 master 分支为 main </span><br><span class="line">git branch -m master main </span><br><span class="line"><span class="comment"># 推送 main 分支到远程 </span></span><br><span class="line">git push -u origin main </span><br><span class="line"><span class="comment"># 设置默认分支为 main </span></span><br><span class="line">git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/main</span><br></pre></td></tr></table></figure>
+
+
+
+<p>单个文件不能超过50mb，本地提交记录中如果有超过50mb的文件的话也是会上传失败，建议（重开）重新克隆一个项目文件夹</p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Rve笔记</title>
+    <url>/2024/11/26/Rve%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>渗透测试课笔记</p>
+<span id="more"></span>
+
+<h3 id="数据的存储"><a href="#数据的存储" class="headerlink" title="数据的存储"></a>数据的存储</h3><p>1 qword &#x3D; 2 dword &#x3D; 4 word &#x3D; 8 byte &#x3D; 64 bit  </p>
+<p>小端存储：数据的<strong>低位</strong>放在<strong>低地址</strong>空间，数据的<strong>高位</strong>放在<strong>高地址</strong>空间</p>
+<p>大端存储：数据的<strong>高位</strong>放在<strong>低地址</strong>空间，数据的<strong>低位</strong>放在<strong>高地址</strong>空间</p>
+<p><strong>eg:存放的时候是以一个存储单元为单位来存放，存储单元内部不需要再转变顺序！！！</strong></p>
+<p>例如低位0001-0101存放在0号地址，不需要把它变成1010-1000！！！</p>
+<p>eg:读取时都是从低地址开始读数据</p>
+<p>汇编代码示例：</p>
+<img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/1.png" alt="1" style="zoom:67%;">
+
+<p>在汇编代码中定义变量，db 表示字节类型，dw 表示字类型，dd 表示双字类型。而在表示数值的时候，以h 结尾的表示十六进制数，以 b 结尾的表示 2 进制数，结尾处没有修饰符的默认为十进制数。</p>
+<h3 id="汇编语言"><a href="#汇编语言" class="headerlink" title="汇编语言"></a>汇编语言</h3><h5 id="八个通用寄存器"><a href="#八个通用寄存器" class="headerlink" title="八个通用寄存器"></a>八个通用寄存器</h5><p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/2.png"></p>
+<p>EAX：累加器，在乘法和除法指令中被自动使用；在 Win32 中，一般用在函数的返回值中。</p>
+<p>EBX：基址寄存器，DS 段中的数据指针。</p>
+<p>ECX：计数器，CPU 自动使用 ECX 作为循环计数器，在字符串和循环操作中常用，在循环指令（LOOP）或串操作中，ECX 用来进行循环计数，每执行一次循环，ECX 都会被CPU 自动减一。</p>
+<p>EDX：数据寄存器。</p>
+<p>​	以上 4 个寄存器主要用在算数运算与逻辑运算指令中，常用来保存各种需要计算的值。</p>
+<p>EBP：扩展基址指针寄存器，SS 段中堆栈内数据指针。EBP 由高级语言用来引用参数和局部变量，通常称为堆栈基址指针寄存器。</p>
+<p>ESP：堆栈指针寄存器，SS 段中堆栈指针。ESP 用来寻址堆栈上的数据，ESP 寄存器一般不参与算数运算，通常称为堆栈指针寄存器。</p>
+<p>ESI：源变址寄存器，字符串操作源指针。</p>
+<p>EDI：目的变址寄存器，字符串操作目标指针。</p>
+<p>​	以上 4 个寄存器主要用作保存内存地址的指针。</p>
+<p>ESI 和 EDI 通常用于内存数据的传递，因此才被称为源指针寄存器和目的指针寄存器。ESI和 EDI 与特定的指令 LODS、STOS、REP、MOVS 等一起使用，主要用于内存中数据的复制。</p>
+<p>ESP 指示堆栈区域的栈顶地址，PUSH、POP、CALL、RET 等指令可以直接用来操作 ESP指针。EBP 指示堆栈区域的基地址。</p>
+<p>栈的生长方向：向低地址方向生长</p>
+<p>堆的生长方向：向高地址方向生长</p>
+<h5 id="指令指针寄存器"><a href="#指令指针寄存器" class="headerlink" title="指令指针寄存器"></a>指令指针寄存器</h5><p>EIP：保存着下一条要执行的指令的地址</p>
+<h5 id="段寄存器"><a href="#段寄存器" class="headerlink" title="段寄存器"></a>段寄存器</h5><p>存放段的基地址，段是一块预分配的内存区域。有些段存放有程序的指令， 有些则存放有程序的变量，另外还有其他的段，如堆栈段存放着函数变量和函数参数等。<br>在 16 位 CPU 中，段寄存器只有 4 个，分别是 CS（代码段）、DS（数据段）、SS（堆栈段）和 ES（附加数据段）。 在 32 位的 CPU 中，<br>段寄存器从 4 个扩展为 6 个，分别是 CS、DS、SS、ES、FS 和 GS。 FS 和 GS 段寄存器也属于附加的段寄存器。</p>
+<h5 id="标志寄存器"><a href="#标志寄存器" class="headerlink" title="标志寄存器"></a>标志寄存器</h5><p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/3.png"></p>
+<p>OF（OverFlow Flag）：溢出标志位，用来反映有符号数加减法运算所得结果是否溢出。 如果运算超过当前运算位数所能表示的范围，则称为溢出，该标志位被置为 1，否则为 0； </p>
+<p>SF（Sign Flag）：符号标志位，用来反映运算结果的符号位。运算结果为负时为 1， 否则为 0。 ； </p>
+<p>ZF（Zero Flag）：零标志位，用来反映运算结果是否为 0。运算结果为 0 时该标志位 被置为 1，否则为 0； </p>
+<p>AF（Auxiliary carry Flag）：辅助进位标志位。在字操作时，发生低字节向高字节进位 或借位时该标志位被置为 1，否则为 0（注意：在字节操作时，发生低 4 位向高 4 为进位或借 位时该标志位被置为 1，否则为 0）；</p>
+<p>PF（Parity Flag）：奇偶标志位，用于反映结果中“1”的个数的奇偶性。如果“1” 的个数为偶数，该标志位被置为 1，否则为 0。</p>
+<p>CF（Carry Flag）：进位标志位。运算结果的最高位产生了一个进位或借位，则该标 志位被置为 1，否则为 0；</p>
+<h5 id="常用汇编指令集"><a href="#常用汇编指令集" class="headerlink" title="常用汇编指令集"></a>常用汇编指令集</h5><h6 id="数据传递指令"><a href="#数据传递指令" class="headerlink" title="数据传递指令"></a>数据传递指令</h6><blockquote>
+<p>mov 目的操作数，源操作数</p>
+</blockquote>
+<p>mov 指令是最常见的数据传送指令，它的功能等同于高级语言中的赋值语句。</p>
+<p>内存与内存之间是无法直接传递数据的，目的操作数不能为立即数，两个操作数的宽度必须一致。</p>
+<p>mov eax, 12345678h </p>
+<p>mov eax, dword ptr [00401000h] </p>
+<p>mov eax, ebx </p>
+<p>mov word ptr [00401000h], 1234h </p>
+<p>mov byte ptr [00401000h], al</p>
+<blockquote>
+<p>xchg 目的操作数, 源操作数</p>
+</blockquote>
+<p>xchg 指令的功能是交换两个操作数的数据。该指令有两个参数，分别是源操作数和目的操作数。</p>
+<p>xchg 指令允许寄存器和寄存器之间交换数据，也允许寄存器和内存之间交换数据，但是内存和内存之间是不能进行数据交换的。</p>
+<p>XCHG EAX,EBX  </p>
+<p>XCHG DWORD PTR DS:[403020],EBX  </p>
+<p>XCHG WORD PTR DS:[403024],CX </p>
+<blockquote>
+<p>Lea 目的操作数，源操作数</p>
+<p>lea r32, mem</p>
+</blockquote>
+<p>lea 指令是将 mem 的地址装入到一个 32 位的寄存器当中。</p>
+<h6 id="逻辑运算指令"><a href="#逻辑运算指令" class="headerlink" title="逻辑运算指令"></a>逻辑运算指令</h6><blockquote>
+<p>常用的逻辑运算有 and（与）、or（或）、xor（异或）和 not（非）。</p>
+<p>and&#x2F;xor&#x2F;not 目的操作数，源操作数</p>
+<p>not 目的操作数</p>
+</blockquote>
+<p>and&#x2F;xor&#x2F;not 指令影响的标志位有 OF、SF、ZF、PF 和 CF。</p>
+<p>结果存到目的操作数中</p>
+<h6 id="算术运算指令"><a href="#算术运算指令" class="headerlink" title="算术运算指令"></a>算术运算指令</h6><p>add  目的操作数，源操作数   &#x2F;&#x2F; 目的操作数 &#x3D; 目的操作数 + 源操作数 </p>
+<p>sub  目的操作数，源操作数   &#x2F;&#x2F; 目的操作数 &#x3D; 目的操作数 - 源操作数 </p>
+<p>adc  目的操作数，源操作数   &#x2F;&#x2F; 目的操作数 &#x3D; 目的操作数 + 源操作数 + CF位的值</p>
+<p>sbb  目的操作数，源操作数   &#x2F;&#x2F; 目的操作数 &#x3D; 目的操作数 - 源操作数 - CF位的值 </p>
+<p>inc  目的操作数   &#x2F;&#x2F; 目的操作数 &#x3D; 目的操作数 + 1</p>
+<p>dec  目的操作数  &#x2F;&#x2F; 目的操作数 &#x3D; 目的操作数 - 1</p>
+<h6 id="堆栈操作指令"><a href="#堆栈操作指令" class="headerlink" title="堆栈操作指令"></a>堆栈操作指令</h6><blockquote>
+<p>堆栈数据操作指令</p>
+<p>push reg&#x2F;mem&#x2F;imm </p>
+<p>pop reg&#x2F;mem</p>
+</blockquote>
+<blockquote>
+<p>保存&#x2F;恢复通用寄存器现场</p>
+<p>Pushad </p>
+<p>Popad</p>
+</blockquote>
+<p>pushad 指令在堆栈上按 顺序压入所有的 32 位通用寄存器，顺序依次是 EAX、ECX、EDX、EBX、ESP、EBP、ESI 和 EDI</p>
+<p>popad 指令以相反的顺序从堆栈中弹出这些通用寄存器</p>
+<h6 id="转移指令"><a href="#转移指令" class="headerlink" title="转移指令"></a>转移指令</h6><blockquote>
+<p>Jmp reg&#x2F;mem&#x2F;imm</p>
+</blockquote>
+<p>无条件跳转指令，直接改变EIP的值</p>
+<blockquote>
+<p>条件转移指令</p>
+</blockquote>
+<p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/4.png"></p>
+<p>cmp指令</p>
+<blockquote>
+<p>Cmp reg, imm&#x2F;reg&#x2F;mem </p>
+<p>Cmp mem, imm&#x2F;reg</p>
+</blockquote>
+<p>比较两个数是否相等</p>
+<blockquote>
+<p>call reg&#x2F;mem&#x2F;imm</p>
+</blockquote>
+<p>call 指令是调用过程（函数）的指令，它的作用类似于 jmp 指令，可以修改 EIP 寄存器的值，从而使指令转移到其他地址继续执行。</p>
+<p>与 jmp 指令不同的地方是，call 指令在修改 EIP 寄存器的值之前，会将 call 指令的下一条指令的地址保存至堆栈，以便在调用过程（函数） 后再继续从 call 指令处执行</p>
+<p>循环指令</p>
+<blockquote>
+<p>LOOP 00401010</p>
+</blockquote>
+<p>当ecx寄存器中的值大于0时，EIP跳转到00401010，跳转后ecx减一</p>
+<h6 id="寻址"><a href="#寻址" class="headerlink" title="寻址"></a>寻址</h6><p>MOV EAX, DWORD PTR [00403000]  直接寻址</p>
+<p>MOV EDX, [EAX]  间接寻址</p>
+<h3 id="OD工具"><a href="#OD工具" class="headerlink" title="OD工具"></a>OD工具</h3><p>分为反汇编窗口，寄存器窗口，数据窗口，栈窗口，信息窗口</p>
+<p>F2  在选中处添加断点</p>
+<p>F4 运行到选中处</p>
+<p>F8  单步步过，每按一次这个键执行一条反汇编窗口中的一条指令，遇到 CALL 等子程序不进入其代码。</p>
+<p>F7：单步步入，功能同单步步过(F8)类似，区别是遇到 CALL 等子程序时会进入其中，进入后首先会停留在子程序的第一条指令上。</p>
+<p>软件断点，硬件断点</p>
+<h3 id="PE文件"><a href="#PE文件" class="headerlink" title="PE文件"></a>PE文件</h3><ul>
+<li><p>PE：Portable Executable File Format（可移植的执行体）。</p>
+</li>
+<li><p>.exe与.dll文件都是PE格式。</p>
+</li>
+<li><p>虚拟内存地址 ( VA ) VA &#x3D; 进程的基地址 + RVA</p>
+</li>
+<li><p>相对虚拟内存地址 ( RVA )</p>
+</li>
+<li><p>文件偏移地址 ( FOA )</p>
+</li>
+</ul>
+<h5 id="虚拟内存地址与相对虚拟内存地址"><a href="#虚拟内存地址与相对虚拟内存地址" class="headerlink" title="虚拟内存地址与相对虚拟内存地址"></a>虚拟内存地址与相对虚拟内存地址</h5><p>用户的 PE 文件被操作系统加载进内存后， PE 对应的进程支配了自己独立的 4GB 虚拟空间。</p>
+<p>在这个空间中定位的地址称为虚拟内存地址 (Virtual Address ，VA )</p>
+<p> 进程本身的 VA &#x3D;进程的基地址 + 相对 虚拟内存地址 。</p>
+<p>相对虚拟内存地址 (Relative Virtual Address ，RVA ) 是相对于基地址的偏移RVA 是某个特定位置距离某个模块基地址的偏移量<img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/5.png" style="zoom:50%;"></p>
+<h5 id="文件偏移地址"><a href="#文件偏移地址" class="headerlink" title="文件偏移地址"></a>文件偏移地址</h5><p>文件偏移地址 (File OffsetAddress ，FOA )  和内存无关 ，它是指某个位置距离文件头的偏移。</p>
+<p>静态的，硬盘上的PE文件。</p>
+<p>虚拟地址是动态的，内存的，两者有区别。</p>
+<h5 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h5><p>PE 数据结构 中的指针的定义:如果数据结构中某个 字段存储的值为一个地址，那么这个字段就是一个指针。BookStore.Address 是一个指针， Book.Address 也是一个指针 。有时候，你还会遇到 一个指针指向了 另一个指针 的情况。</p>
+<h5 id="数据目录"><a href="#数据目录" class="headerlink" title="数据目录"></a>数据目录</h5><p>Windows 下的可执行文件是 PE 中的一种，这种文件中除了包含代码及数据段的相关数据 以外，还包含许多与文件执行有关的其他数据，比如引用外部函数的信息、 PE 程序的图标、 内部导出函数等，这些数据可能会随着操作系统新特性的出现而增加。</p>
+<p>PE 中有一个数据结构称为 数据目录 ，其中记录了所有可能的数据类型。</p>
+<p>目前已定义的有 15 种，包括导出表 、导入表、资源表、 异常表、属性证书表 、重定位表等。</p>
+<h5 id="节"><a href="#节" class="headerlink" title="节"></a>节</h5><p>节就是存放不同类型数据(比如代码、数据、常量、资源等)的地方，不同的节具有不同的访问权限。节是 PE 文件中存放代码或数据的基本单元 。</p>
+<p>比如”.data”   声明的是初始化的数据， “.data?” 声明的是未初始化的数据， “.code”  声明的是可执行的代码等</p>
+<h5 id="内存对齐"><a href="#内存对齐" class="headerlink" title="内存对齐"></a>内存对齐</h5><p>由于 Windows 操作系统对内 存属性的设置以页为单位.</p>
+<p>节在内存中的对齐单位必须至少是一个页的大小。</p>
+<p>32 位的 Windows 系统来说，这个值是 4KB ( 1000h）</p>
+<p>64 位操作系统来说，这个值就是 8KB (2000h )。</p>
+<h5 id="文件对齐"><a href="#文件对齐" class="headerlink" title="文件对齐"></a>文件对齐</h5><p>通常会以一个物理扇区的大小 作为对齐粒度的值，即 512 字节，十六进制表示为 200h 。</p>
+<p>出于节约资源的考虑，操作系统允许节在内存和文件中的对齐尺寸不 一致。</p>
+<p>造成了 PE 在文件中和在内存中的大小也会不一致 。也就是说， PE 在内存中的尺寸要比在文件中的尺寸大 。</p>
+<h5 id="资源对齐"><a href="#资源对齐" class="headerlink" title="资源对齐"></a>资源对齐</h5><p>资源文件中，资源字节码部分一般要求以双字 (4 个字节）方式对齐</p>
+<h5 id="Unicode字符串"><a href="#Unicode字符串" class="headerlink" title="Unicode字符串"></a>Unicode字符串</h5><p>Unicode 是继 ASCII 字符编码后的另一种新型字符编码 。</p>
+<p>严格意义上讲， ASCll 码的每个 字符使用 7 位表示， Unicode 则使用全16 位表示一个字符。</p>
+<p>Unicode 字符串中的每个字符均为 双字节 ，所以又称为宽字符串。</p>
+<p>由于 Unicode 兼容 ASCII 字符 ，所以被大多数程序所支持，如 Windows 内核。</p>
+<p>Unicode 的前 128 个字符码同ASCII 码具有同样字 节值。</p>
+<p>字母a: ASCll 编码是 0x61 ;Unicode  编码是 0x0061。</p>
+<h5 id="32位系统下的PE结构"><a href="#32位系统下的PE结构" class="headerlink" title="32位系统下的PE结构"></a>32位系统下的PE结构</h5><p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/6.png"></p>
+<p>因为在 DOS MZ 头中有一个字段 非常重要</p>
+<p>IMAGE_DOS_HEADER .e_lfanew ,操作系统定位标准的PE 头部，修改这个值可以去掉DOS头</p>
+<img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/7.png" style="zoom:80%;">
+
+<p>程序员眼中的PE结构：</p>
+<p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/8.png"></p>
+<p>标准PE头：</p>
+<p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/12.png"></p>
+<p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/11.png"></p>
+<p>尽管从名字上看好像该部分数据是可选(optional ) 的，但在 PE 文件结构中，比标准 PE 头更多的内容，让人感觉似乎包才是真正的 PE 头。</p>
+<p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/9.png"></p>
+<p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/10.png"></p>
+<p>IMAGE_OPTIONAL_HEADER32   (扩展PE 头〉结构 的最后一个字段为 DataDirectory 。是一个IMAGE_DATA_DIRECTORY结构数组，有16个这样的元素。</p>
+<p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/13.png"></p>
+<p>16个结构数组分别表示</p>
+<p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/14.png"></p>
+<p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/15.png"></p>
+<p>节表结构：</p>
+<p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/16.png"></p>
+<h3 id="导入表"><a href="#导入表" class="headerlink" title="导入表"></a>导入表</h3><p>导入表结构：</p>
+<p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/17.png"></p>
+<p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/18.png"></p>
+<p>当 PE 被加载进虚拟地址 空间以后， IAT 的内容会被操作系统更改为函数的 VA 。这个修改最终会导致通向“值一名称”描述的桥 2 发生断裂。</p>
+<p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/19.png"></p>
+<p>桥 1 指向的地址列表被定义为 INT (Import Name Table)。</p>
+<p>桥 2 指向的地址列表被定义为 IAT (lmport Address Table) 。</p>
+<h3 id="导出表"><a href="#导出表" class="headerlink" title="导出表"></a>导出表</h3><p>导出表结构：</p>
+<p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/20.png"></p>
+<p>目录：</p>
+<p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/21.png"></p>
+<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p>内存中的栈结构：</p>
+<p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/22.png"></p>
+<p>在对栈进行操作时，一定要维系栈平衡，即压入多少字节最后就要弹出多少字节， 否则会导致程序运行出现错误</p>
+<p>将调用函数用到的参数入栈。将call指令的下一条指令入栈，以备返回。保存原始 ebp指针函数准备栈空间，ebp指向栈中该函数的基地址。为函数中定义的局部变量开辟栈空间（通过调整 esp来完成）运行函数中定义的语句。清理局部变量，恢复原始的ebp指 针-leave返回步骤 2 保存的下一条指令处执行，同时清理栈中的函数参数（通过指令retn 8 完成，为什么是8？）答：之前压了2个参数，弹出EIP后，要将EXP再加8，将栈指针恢复到调用函数之前</p>
+<p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/23.png"></p>
+<p>在函数中，利用ebp+n读取参数，ebp-n读取局部变量</p>
+<p>栈溢出原理：将edi记录为ebp-4（即第一个局部变量），将其循环修改值，将局部变量填充满，再将原EBP填充满，最后将EIP修改</p>
+]]></content>
+      <tags>
+        <tag>Rve</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mysql_server</title>
+    <url>/2024/12/11/mysql-server/</url>
+    <content><![CDATA[<p>​	如何在阿里云轻量级服务器(ubuntu)上添加mysql远程服务</p>
+<ol>
+<li><p>安装mysql</p>
+<ol>
+<li><p>更新软件包列表</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>安装mysql</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt install mysql-server</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>检查mysql状态</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo systemctl status mysql</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>配置mysql允许远程访问</p>
+<ol>
+<li><p>编辑mysql配置文件</p>
+<p>打开mysql配置文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf</span><br></pre></td></tr></table></figure>
+
+<p>找到以下行：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bind-address = 127.0.0.1</span><br></pre></td></tr></table></figure>
+
+<p>将其改为：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bind-address = 0.0.0.0</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>重启mysql服务</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo systemctl restart mysql</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>创建用户并赋权</p>
+<ol>
+<li><p><strong>登录mysql</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo mysql</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p><strong>创建一个用户并允许远程访问</strong>替换 <code>username</code> 和 <code>password</code> 为实际用户名和密码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE USER &#x27;username&#x27;@&#x27;%&#x27; IDENTIFIED BY &#x27;password&#x27;; GRANT ALL PRIVILEGES ON *.* TO &#x27;username&#x27;@&#x27;%&#x27; WITH GRANT OPTION; FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
+
+<p>ps: 可利用如下命令更新赋予全部权限</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GRANT ALL PRIVILEGES ON *.* TO &#x27;caserver&#x27;@&#x27;%&#x27; WITH GRANT OPTION;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p><strong>测试新用户</strong> 退出 MySQL 并使用新用户重新登录（可在服务器上测试）：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysql -u username -p</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>配置防火墙</p>
+<ol>
+<li><p>开放mysql端口 （默认3306）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo ufw allow 3306</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>检查防火墙状态</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo ufw status</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p><strong>（阿里云）开放安全组</strong> 在阿里云管理控制台：</p>
+<ul>
+<li>打开您的轻量应用服务器实例。</li>
+<li>进入<strong>防火墙规则</strong>或<strong>安全组规则</strong>页面。</li>
+<li>添加规则：允许 <strong>3306</strong> 端口的入站访问。</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<p>测试：在本地的navicat中添加数据库</p>
+]]></content>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>certificate</title>
+    <url>/2024/12/15/certificate/</url>
+    <content><![CDATA[<p>本文是关于数字证书的颁发过程的问题</p>
+<span id="more"></span>
+
+<p><img src="/2024/12/15/certificate/1.png"></p>
+<h4 id="创建公私钥"><a href="#创建公私钥" class="headerlink" title="创建公私钥"></a>创建公私钥</h4><p>为root_ca生成证书</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 生成root_ca私钥</span><br><span class="line">openssl genrsa -out root_ca_key.pem 2048</span><br><span class="line"># 生成自签名证书</span><br><span class="line">openssl req -x509 -new -nodes -key root_ca_key.pem -sha256 -days 3650 -out root_ca_cert.pem</span><br></pre></td></tr></table></figure>
+
+
+
+<p>为中间ca生成证书</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 为中间ca创建私钥</span><br><span class="line">openssl genrsa -out intermediate_ca_key.pem 2048</span><br><span class="line"># 为中间ca生成csr文件</span><br><span class="line">openssl req -new -key intermediate_ca_key.pem -out intermediate_ca.csr</span><br></pre></td></tr></table></figure>
+
+<p><strong>生成 SAN 配置文件</strong>(针对后续https，能在浏览器正常打开网页，需配置SAN，不能直接用openssl直接让root给中间ca颁发证书)</p>
+<p>创建intermediate_openssl.cnf</p>
+<p>&#x2F;&#x2F;若在本地</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[ v3_req ]</span><br><span class="line">subjectAltName = @alt_names</span><br><span class="line"></span><br><span class="line">[ alt_names ]</span><br><span class="line">DNS.1   = localhost</span><br><span class="line">IP.1    = 127.0.0.1</span><br><span class="line">IP.2    = ::1</span><br></pre></td></tr></table></figure>
+
+<p>&#x2F;&#x2F;若在服务器</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[ v3_req ]</span><br><span class="line">subjectAltName = @alt_names</span><br><span class="line"></span><br><span class="line">[ alt_names ]</span><br><span class="line">IP.1    = 47.106.143.170</span><br></pre></td></tr></table></figure>
+
+<p>使用 root_ca 的私钥和根证书为网站签署一个新的证书：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl x509 -req -in intermediate_ca.csr -CA root_ca_cert.pem -CAkey root_ca_key.pem -CAcreateserial -out intermediate_cert.pem -days 365 -sha256 -extfile intermediate_openssl.cnf -extensions v3_req</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="关于https"><a href="#关于https" class="headerlink" title="关于https"></a>关于https</h4><p>安装插件 <code>django-sslserver</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip install django-sslserver</span><br></pre></td></tr></table></figure>
+
+<p>检查你的 Django 项目的 <code>settings.py</code> 文件，确保 <code>sslserver</code> 已添加到 <code>INSTALLED_APPS</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    ...</span><br><span class="line">    &#x27;sslserver&#x27;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>以及添加</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SECURE_SSL_REDIRECT = True  # 强制重定向到 HTTPS</span><br><span class="line">SECURE_HSTS_SECONDS = 3600  # 启用 HSTS，设置过期时间</span><br><span class="line">SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # 对子域名启用 HSTS</span><br><span class="line">SECURE_HSTS_PRELOAD = True  # 允许浏览器预加载 HSTS</span><br><span class="line">SECURE_PROXY_SSL_HEADER = (&#x27;HTTP_X_FORWARDED_PROTO&#x27;, &#x27;https&#x27;)  # 代理配置</span><br></pre></td></tr></table></figure>
+
+<p>找到这个文件D:\python3.12\Lib\site-packages\sslserver\management\commands\runsslserver.py</p>
+<p>venv&#x2F;lib&#x2F;python3.12&#x2F;site-packages&#x2F;sslserver&#x2F;management&#x2F;commands&#x2F;runsslserver.py</p>
+<p>找到下面这段代码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">class SecureHTTPServer(ThreadedWSGIServer):</span><br><span class="line">    def __init__(self, address, handler_cls, certificate, key, ipv6=False):</span><br><span class="line">        super(SecureHTTPServer, self).__init__(address, handler_cls, ipv6=ipv6)</span><br><span class="line">        self.socket = ssl.wrap_socket(self.socket, certfile=certificate,</span><br><span class="line">                                      keyfile=key, server_side=True,</span><br><span class="line">                                      ssl_version=_ssl_version,</span><br><span class="line">                                      cert_reqs=ssl.CERT_NONE)</span><br></pre></td></tr></table></figure>
+
+<p>修改为</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">class SecureHTTPServer(ThreadedWSGIServer):</span><br><span class="line">    def __init__(self, address, handler_cls, certificate, key, ipv6=False):</span><br><span class="line">        super(SecureHTTPServer, self).__init__(address, handler_cls, ipv6=ipv6)</span><br><span class="line">        </span><br><span class="line">        # 创建 SSL 上下文</span><br><span class="line">        context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)</span><br><span class="line">        context.load_cert_chain(certfile=certificate, keyfile=key)</span><br><span class="line">        context.options |= ssl.OP_NO_TLSv1 | ssl.OP_NO_TLSv1_1  # 禁用过时的 TLS 版本</span><br><span class="line"></span><br><span class="line">        # 替换原来的 wrap_socket</span><br><span class="line">        self.socket = context.wrap_socket(self.socket, server_side=True)</span><br></pre></td></tr></table></figure>
+
+<p>说明<br>为什么要用 ssl.SSLContext 替换 ssl.wrap_socket？</p>
+<p>​	ssl.wrap_socket 是一种旧方法，已经不推荐使用。ssl.SSLContext 是更现代化、更灵活的方式。<br>​	在 Python 3.12 中，ssl.wrap_socket 可能已经被移除或有兼容性问题。</p>
+<p>主要调整点</p>
+<p>​	使用 ssl.SSLContext 创建上下文，指定协议为 ssl.PROTOCOL_TLS_SERVER。<br>​	调用 context.load_cert_chain 加载证书和密钥。<br>​	使用 context.wrap_socket 替代 ssl.wrap_socket。</p>
+<p>TLS 版本配置</p>
+<p>​	使用 context.options |&#x3D; ssl.OP_NO_TLSv1 | ssl.OP_NO_TLSv1_1 禁用过时的 TLS 版本（可选，但推荐）。</p>
+<h4 id="服务器部署"><a href="#服务器部署" class="headerlink" title="服务器部署"></a>服务器部署</h4><p>创建一个虚拟环境来隔离项目的 Python 环境，避免修改系统的 Python。</p>
+<ol>
+<li><p>**安装 <code>python3-venv</code>**（如果未安装）：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line"></span><br><span class="line">sudo apt install python3-venv</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>创建虚拟环境</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python3 -m venv venv</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>激活虚拟环境</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">source venv/bin/activate</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>运行：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python3 manage.py runsslserver 0.0.0.0:443 --certificate /var/www/CA/templates/ca/guet_ca_cert.pem --key /var/www/CA/templates/ca/guet_ca_key.pem</span><br></pre></td></tr></table></figure>
+
+
+
+<p>&#x2F;var&#x2F;www&#x2F;CA&#x2F;templates&#x2F;ca&#x2F;root_ca_cert.pem</p>
+<p>关闭：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo lsof -i :8080</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">kill 【PID】</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+<p>要让 Django 项目在阿里云服务器上持续运行，即使你断开与服务器的连接，可以使用一些方法将其作为后台服务运行。常见的方式有使用 <strong><code>tmux</code></strong> 或 **<code>screen</code>**（用于管理终端会话），以及使用 **<code>systemd</code>**（用于设置长期服务）。下面我将介绍几种方法。</p>
+<h4 id="使用-tmux"><a href="#使用-tmux" class="headerlink" title="使用 tmux"></a>使用 <code>tmux</code></h4><p><code>tmux</code> 是一个终端复用器，能够让你在后台运行程序并保持其持续运行，即使关闭了 SSH 会话。</p>
+<h4 id="1-安装-tmux"><a href="#1-安装-tmux" class="headerlink" title="1. 安装 tmux"></a>1. 安装 <code>tmux</code></h4><p>如果你的服务器上没有安装 <code>tmux</code>，可以先安装：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bash复制代码sudo apt update</span><br><span class="line">sudo apt install tmux</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-启动-tmux-会话"><a href="#2-启动-tmux-会话" class="headerlink" title="2. 启动 tmux 会话"></a>2. 启动 <code>tmux</code> 会话</h4><p>在服务器上创建一个新的 <code>tmux</code> 会话：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bash</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">复制代码</span><br><span class="line">tmux new -s my_django_session</span><br></pre></td></tr></table></figure>
+
+<p>这里的 <code>my_django_session</code> 是会话的名字，你可以随意命名。</p>
+<h4 id="3-运行-Django-项目"><a href="#3-运行-Django-项目" class="headerlink" title="3. 运行 Django 项目"></a>3. 运行 Django 项目</h4><p>在 <code>tmux</code> 会话中运行你的 Django 项目（例如，使用 <code>runserver</code> 或 <code>runsslserver</code>）：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bash</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">复制代码</span><br><span class="line">python3 manage.py runserver 0.0.0.0:8080</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-分离-tmux-会话"><a href="#4-分离-tmux-会话" class="headerlink" title="4. 分离 tmux 会话"></a>4. 分离 <code>tmux</code> 会话</h4><p>你可以按下 <code>Ctrl + B</code>，然后按 <code>D</code>，这会使你“分离”出 <code>tmux</code> 会话，项目继续在后台运行。</p>
+<h4 id="5-恢复会话"><a href="#5-恢复会话" class="headerlink" title="5. 恢复会话"></a>5. 恢复会话</h4><p>如果你需要重新连接到 <code>tmux</code> 会话，可以运行：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bash</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">复制代码</span><br><span class="line">tmux attach -t my_django_session</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-关闭会话"><a href="#6-关闭会话" class="headerlink" title="6. 关闭会话"></a>6. 关闭会话</h4><p>当你不再需要 <code>tmux</code> 会话时，可以输入：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bash</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">复制代码</span><br><span class="line">exit</span><br></pre></td></tr></table></figure>
+
+<p>这将关闭会话并终止 Django 项目。</p>
+<p>https默认443端口</p>
+<p>django</p>
+<p>pymysql</p>
+<p>django-sslserver</p>
+<p>cryptography</p>
+<p>requests</p>
+<p>&#x2F;etc&#x2F;apache2&#x2F;sites-enabled&#x2F;000-default.conf</p>
+<p>增加重定向</p>
+<p># 其他配置项（如果有的话）    ServerName 47.106.143.170     # 重定向 HTTP 到 HTTPS    Redirect permanent &#x2F; <a href="https://47.106.143.170/">https://47.106.143.170/</a></p>
+<p>CA.conf</p>
+<p>监听端口443，配置证书跟私钥</p>
+<p><strong>SAN（Subject Alternative Name）</strong> 是 SSL&#x2F;TLS 证书中的一个字段，它用于指定证书可以用于多个不同的域名、IP 地址、DNS 名称等。SAN 字段是证书扩展的一部分，允许一个单一的证书支持多个域名或服务。这在很多实际场景中非常有用，尤其是当你希望通过一个证书来保护多个子域名或服务时。</p>
+<h3 id="SAN-字段的作用："><a href="#SAN-字段的作用：" class="headerlink" title="SAN 字段的作用："></a>SAN 字段的作用：</h3><ol>
+<li><strong>多域名支持</strong>：<ul>
+<li>SAN 字段可以包含多个域名，使得一个证书可以同时支持多个不同的域名或子域名。例如，一个证书可以同时保护 <code>example.com</code>、<code>www.example.com</code> 和 <code>blog.example.com</code> 等多个域名。</li>
+</ul>
+</li>
+<li><strong>灵活性</strong>：<ul>
+<li>SAN 提供了对多种类型的名称的支持，不仅限于域名（DNS 名称），还可以包括 IP 地址、电子邮件地址等。</li>
+<li>对于 IP 地址，可以为服务器的多个 IP 地址生成一个证书，而不必为每个 IP 地址生成单独的证书。</li>
+</ul>
+</li>
+<li><strong>用于不同类型的连接</strong>：<ul>
+<li>除了 DNS 名称，SAN 字段还支持诸如 <strong>URI</strong>、<strong>IP 地址</strong>、<strong>电子邮件地址</strong> 等形式的标识符。</li>
+</ul>
+</li>
+</ol>
+<h3 id="典型的-SAN-字段内容："><a href="#典型的-SAN-字段内容：" class="headerlink" title="典型的 SAN 字段内容："></a>典型的 SAN 字段内容：</h3><ul>
+<li><strong>DNS 名称（DNS Name）</strong>：列出证书所保护的域名或子域名。</li>
+<li><strong>IP 地址（IP Address）</strong>：列出证书可以用于的 IP 地址。</li>
+<li><strong>电子邮件地址（Email Address）</strong>：证书也可以绑定到特定的电子邮件地址。</li>
+</ul>
+<h3 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h3><p>假设你有一个证书需要保护以下几个域名：</p>
+<ul>
+<li><code>example.com</code></li>
+<li><code>www.example.com</code></li>
+<li><code>api.example.com</code></li>
+</ul>
+<p>在证书的 SAN 字段中，你可以列出这些域名：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DNS:example.com</span><br><span class="line">DNS:www.example.com</span><br><span class="line">DNS:api.example.com</span><br></pre></td></tr></table></figure>
+
+<p>此外，假设你希望证书同时支持某个 IP 地址：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DNS:example.com</span><br><span class="line">DNS:www.example.com</span><br><span class="line">IP:192.168.1.1</span><br></pre></td></tr></table></figure>
+
+<h3 id="SAN-字段与传统的-Common-Name（CN）字段的关系："><a href="#SAN-字段与传统的-Common-Name（CN）字段的关系：" class="headerlink" title="SAN 字段与传统的 Common Name（CN）字段的关系："></a>SAN 字段与传统的 Common Name（CN）字段的关系：</h3><p>在旧版本的 SSL&#x2F;TLS 证书中，<strong>Common Name（CN）</strong> 字段通常用来指定证书所保护的域名。虽然仍然可以在 CN 字段中指定域名，但现代 SSL&#x2F;TLS 证书已经逐步将 SAN 字段作为域名验证的首选方法。</p>
+<p><strong>为什么 SAN 更重要：</strong></p>
+<ul>
+<li><strong>CN 字段的限制</strong>：传统的证书只允许一个 CN，即一个单一的域名，而 SAN 字段可以支持多个域名、IP 地址等。</li>
+<li><strong>浏览器和客户端的要求</strong>：现在的大多数浏览器和客户端都要求证书包含 SAN 字段，而 CN 字段已经不再是唯一的验证域名的来源。</li>
+</ul>
+<h3 id="在证书申请中的作用："><a href="#在证书申请中的作用：" class="headerlink" title="在证书申请中的作用："></a>在证书申请中的作用：</h3><p>当你向证书颁发机构（CA）申请证书时，如果你需要证书保护多个域名或 IP 地址，必须在证书申请中明确列出这些名称，并将它们包含在 SAN 字段中。</p>
+<p>例如，使用 <strong>OpenSSL</strong> 工具生成 CSR 时，可以指定 SAN 字段：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[ req ]</span><br><span class="line">distinguished_name = req_distinguished_name</span><br><span class="line">x509_extensions = v3_req</span><br><span class="line"></span><br><span class="line">[ v3_req ]</span><br><span class="line">subjectAltName = @alt_names</span><br><span class="line"></span><br><span class="line">[ alt_names ]</span><br><span class="line">DNS.1 = example.com</span><br><span class="line">DNS.2 = www.example.com</span><br><span class="line">DNS.3 = api.example.com</span><br></pre></td></tr></table></figure>
+
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><ul>
+<li><strong>SAN</strong> 是 SSL&#x2F;TLS 证书中的一个扩展字段，用于指定证书所保护的多个域名、IP 地址、电子邮件地址等。</li>
+<li>它提供了更大的灵活性，允许一个证书支持多个服务或域名，避免了为每个域名单独申请证书的麻烦。</li>
+<li>在现代证书中，SAN 字段比 CN 字段更为重要，因为它可以支持多个名称，并且大多数浏览器和客户端都依赖于 SAN 来验证证书的有效性。</li>
+</ul>
+<p>apache重启</p>
+<p>sudo systemctl restart apache2</p>
+]]></content>
+      <tags>
+        <tag>CA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2024/10/31/helloworld/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h3 id="Illustrate"><a href="#Illustrate" class="headerlink" title="Illustrate"></a>Illustrate</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">![](image.png)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/10/31/helloworld/test.png" alt="1"></p>
+]]></content>
+      <tags>
+        <tag>test</tag>
+      </tags>
+  </entry>
+</search>
