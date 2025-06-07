@@ -151,7 +151,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -179,6 +179,108 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://roricallry.github.io/2025/06/07/%E8%8E%B7%E5%8F%96kernel32%E5%9F%BA%E5%9D%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/fuck_you.gif">
+      <meta itemprop="name" content="Roricallry">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Roricallry's Blog">
+      <meta itemprop="description" content="小学生">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Roricallry's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/06/07/%E8%8E%B7%E5%8F%96kernel32%E5%9F%BA%E5%9D%80/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-06-07 22:18:10" itemprop="dateCreated datePublished" datetime="2025-06-07T22:18:10+08:00">2025-06-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-06-04 12:18:47" itemprop="dateModified" datetime="2025-06-04T12:18:47+08:00">2025-06-04</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><strong><code>kernel32.dll</code>中两个重要函数</strong>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HMODULE LoadLibraryA([in] LPCSTR lpLibFileName);</span><br></pre></td></tr></table></figure>
+<p>在运行时动态加载指定的 <code>DLL</code>，并获得该 <code>DLL</code> 的模块句柄。加载 <code>DLL</code> 可以提供程序所需的额外功能或资源，增强程序的灵活性和可扩展性。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">FARPROC GetProcAddress(</span><br><span class="line">  [in] HMODULE hModule,</span><br><span class="line">  [in] LPCSTR  lpProcName</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>从指定的动态链接库<code>(DLL)</code>检索导出函数 (也称为过程) 或变量的地址。</p>
+<p><strong>获取<code>kernel32.dll</code>基址-暴力搜索</strong><br>原理：</p>
+<ul>
+<li>每个进程必定加载<code>kernel32.dll</code></li>
+<li>且加载在<code>xxxx0000h</code>处-高端内存，<code>MIN_KERNEL_SEARCH_BASE=70000000H</code> ，分配粒度是<code>10000h</code></li>
+<li>进程启动时，<code>kernel32</code>会调用程序入口点，其返回地址在栈中指向<code>kernel32</code>内部。</li>
+<li><code>kernel32.dll</code>也是标准的<code>PE</code>结构文件，存在<code>MZ</code>头</li>
+</ul>
+<p><strong>获取<code>kernel32.dll</code>基址-<code>PEB</code>搜索</strong></p>
+<ul>
+<li>基于<code>PEB</code>搜索-<code>TEB</code>（<code>Thread Environment Block</code>，线程环境块）系统在此<code>TEB</code>中保存频繁使用的线程相关的数据。可通过<code>CPU</code>的<code>FS</code>寄存器来访问该段，一般存储在<code>[FS:0]</code></li>
+<li><code>PEB</code>（<code>Process Environment Block</code>，进程环境块）存放进程信息，每个进程都有自己的<code>PEB</code>信息。位于用户地址空间。可在<code>TEB</code>结构地址偏移<code>0x30</code>处获得<code>PEB</code>的地址位置。</li>
+<li><code>PEB_LDR_DATA</code> 结构体(包含载入的<code>dll</code>信息)，里面包含了三个双向链表，<br><code>InLoadOrderModuleList</code> 按加载顺序的模块链表<br><code>InMemoryOrderModuleList</code> 按内存位置的模块链表<br><code>InInitializationOrderModuleList</code> 按初始化顺序<br>该结构体在<code>PEB</code>中偏移<code>0x0C</code>的位置</li>
+</ul>
+<p>常规结构如下：<br>![[5600d7f10843cf4bdc8f6d9990a33bc1.png]]</p>
+<p>汇编获取<code>kernel32.dll</code>基址示例：</p>
+<pre><code>mov eax, [fs:30h]        指向PEB
+mov eax, [eax + 0ch]  指向Ldr
+mov eax, [eax + 14h]  指向InMemoryOrderModuleList
+mov eax, [eax]             本进程模块
+mov eax, [eax]              ntdll模块
+mov eax, [eax -8h + 18h]   kernel32.Dll基址
+</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -224,7 +326,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-06-03 23:06:44" itemprop="dateModified" datetime="2025-06-03T23:06:44+08:00">2025-06-03</time>
+      <time title="修改时间：2025-06-07 22:10:27" itemprop="dateModified" datetime="2025-06-07T22:10:27+08:00">2025-06-07</time>
     </span>
 
   
@@ -418,7 +520,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://roricallry.github.io/2024/11/26/Rve%E7%AC%94%E8%AE%B0/">
+    <link itemprop="mainEntityOfPage" href="https://roricallry.github.io/2024/11/26/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/fuck_you.gif">
@@ -436,7 +538,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Rve笔记</a>
+          <a href="/2024/11/26/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">逆向工程笔记</a>
         </h2>
 
         <div class="post-meta-container">
@@ -454,7 +556,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-12-29 11:45:13" itemprop="dateModified" datetime="2024-12-29T11:45:13+08:00">2024-12-29</time>
+      <time title="修改时间：2025-06-07 22:18:01" itemprop="dateModified" datetime="2025-06-07T22:18:01+08:00">2025-06-07</time>
     </span>
 
   
@@ -467,10 +569,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>渗透测试课笔记</p>
+          <p>笔记</p>
+<p>逆向工程课笔记</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/#more" rel="contents">
+              <a class="btn" href="/2024/11/26/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E7%AC%94%E8%AE%B0/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -537,7 +640,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-11-12 23:00:53" itemprop="dateModified" datetime="2024-11-12T23:00:53+08:00">2024-11-12</time>
+      <time title="修改时间：2025-06-07 22:11:23" itemprop="dateModified" datetime="2025-06-07T22:11:23+08:00">2025-06-07</time>
     </span>
 
   

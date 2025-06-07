@@ -26,22 +26,22 @@
 <h5 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h5><p>首先在本机项目文件夹下打开git-bash.exe</p>
 <ol>
 <li><p>执行指令： git init </p>
-<p>将这个目录变为Git可以管理的仓库，初始化成功后你会发现项目里多了一个隐藏文件夹.git<img src="/2024/11/09/Github-project-management/1.png" alt="屏幕截图 2024-11-09 224813"></p>
+<p>将这个目录变为Git可以管理的仓库，初始化成功后你会发现项目里多了一个隐藏文件夹.git<img src="/images/24-1.png" alt="屏幕截图 2024-11-09 224813"></p>
 </li>
 <li><p>执行指令：git add . </p>
-<p>后面的点是个通配符，把所有文件都添加到本地仓库，也可以跟单一文件名添加单一文件。<img src="/2024/11/09/Github-project-management/2.png" alt="屏幕截图 2024-11-09 225518"></p>
+<p>后面的点是个通配符，把所有文件都添加到本地仓库，也可以跟单一文件名添加单一文件。<img src="/images/24-2.png" alt="屏幕截图 2024-11-09 225518"></p>
 </li>
 <li><p>执行指令：git commit -m “【注释】”</p>
-<p>把所有文件都提交到本地仓库，双引号里的内容是本次提交的注释<img src="/2024/11/09/Github-project-management/3.png" alt="屏幕截图 2024-11-09 230904"></p>
+<p>把所有文件都提交到本地仓库，双引号里的内容是本次提交的注释<img src="/images/24-3.png" alt="屏幕截图 2024-11-09 230904"></p>
 </li>
 </ol>
 <h5 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h5><ol>
-<li><p>在github上新建一个repository，名字随便取，随后复制ssh仓库地址<img src="/2024/11/09/Github-project-management/4.png" alt="屏幕截图 2024-11-09 230527"></p>
+<li><p>在github上新建一个repository，名字随便取，随后复制ssh仓库地址<img src="/images/24-4.png" alt="屏幕截图 2024-11-09 230527"></p>
 </li>
-<li><p>在本地之前那个bash窗口，执行：git remote add origin <a href="mailto:&#103;&#105;&#x74;&#x40;&#x67;&#x69;&#x74;&#104;&#x75;&#x62;&#x2e;&#99;&#111;&#x6d;">&#103;&#105;&#x74;&#x40;&#x67;&#x69;&#x74;&#104;&#x75;&#x62;&#x2e;&#99;&#111;&#x6d;</a>:Roricallry&#x2F;handwriting-numerals-recognition.git<img src="/2024/11/09/Github-project-management/5.png" alt="屏幕截图 2024-11-09 231016"></p>
+<li><p>在本地之前那个bash窗口，执行：git remote add origin <a href="mailto:&#x67;&#105;&#x74;&#x40;&#x67;&#x69;&#116;&#104;&#x75;&#x62;&#46;&#x63;&#111;&#x6d;">&#x67;&#105;&#x74;&#x40;&#x67;&#x69;&#116;&#104;&#x75;&#x62;&#46;&#x63;&#111;&#x6d;</a>:Roricallry&#x2F;handwriting-numerals-recognition.git<img src="/images/24-5.png" alt="屏幕截图 2024-11-09 231016"></p>
 </li>
 <li><p>执行：git push -u origin master</p>
-<p>将本地仓库上传到GitHub对应项目仓库的master分支<img src="/2024/11/09/Github-project-management/6.png" alt="屏幕截图 2024-11-09 231210"></p>
+<p>将本地仓库上传到GitHub对应项目仓库的master分支<img src="/images/24-6.png" alt="屏幕截图 2024-11-09 231210"></p>
 </li>
 </ol>
 <p>至此，项目文件已上传到Github上，可在对应项目的对应分支进行查看。</p>
@@ -49,8 +49,8 @@
 
 <p><code>git pull origin master --rebase</code> 会拉取远程分支的更改并在本地更改的基础上应用它们，这样可以减少冲突。</p>
 <h3 id="常见问题与解决方案"><a href="#常见问题与解决方案" class="headerlink" title="常见问题与解决方案"></a>常见问题与解决方案</h3><p>如果远程仓库的提交记录与本地记录不一致，会导致提交失败，此时需对本地仓库进行更新再重新修改上传(防止多人协作时版本不一)</p>
-<p>如果是个人开发，不考虑其他人，后面直接加   –force   （会覆盖远程仓库的历史）<img src="/2024/11/09/Github-project-management/7.png" alt="7"></p>
-<p>下面这个错误是因为本地分支的名称是 <code>master</code>，而不是 <code>main</code>。因此，Git无法找到一个名为 <code>main</code> 的分支来推送。<img src="/2024/11/09/Github-project-management/8.png" alt="8"></p>
+<p>如果是个人开发，不考虑其他人，后面直接加   –force   （会覆盖远程仓库的历史）<img src="/images/24-7.png" alt="7"></p>
+<p>下面这个错误是因为本地分支的名称是 <code>master</code>，而不是 <code>main</code>。因此，Git无法找到一个名为 <code>main</code> 的分支来推送。<img src="/images/24-8.png" alt="8"></p>
 <p>解决办法有</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">\# 重命名本地的 master 分支为 main </span><br><span class="line">git branch -m master main </span><br><span class="line"><span class="comment"># 推送 main 分支到远程 </span></span><br><span class="line">git push -u origin main </span><br><span class="line"><span class="comment"># 设置默认分支为 main </span></span><br><span class="line">git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/main</span><br></pre></td></tr></table></figure>
 
@@ -63,17 +63,43 @@
       </tags>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/2024/10/31/helloworld/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h3 id="Illustrate"><a href="#Illustrate" class="headerlink" title="Illustrate"></a>Illustrate</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">![](image.png)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/test.png" alt="1"></p>
+]]></content>
+      <tags>
+        <tag>test</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>certificate</title>
     <url>/2024/12/15/certificate/</url>
     <content><![CDATA[<p>本文主要讲述关于数字证书的颁发过程，小型CA项目搭建</p>
 <span id="more"></span>
 
-
-
+<p><img src="/images/cert.png" alt="证书"></p>
 <h4 id="创建公私钥"><a href="#创建公私钥" class="headerlink" title="创建公私钥"></a>创建公私钥</h4><p>为root_ca生成证书</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 生成root_ca私钥</span><br><span class="line">openssl genrsa -out root_ca_key.pem 2048</span><br><span class="line"># 生成自签名证书</span><br><span class="line">openssl req -x509 -new -nodes -key root_ca_key.pem -sha256 -days 3650 -out root_ca_cert.pem</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2024/12/15/certificate/cert.png"></p>
+
+
 <p>为中间ca生成证书</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 为中间ca创建私钥</span><br><span class="line">openssl genrsa -out intermediate_ca_key.pem 2048</span><br><span class="line"># 为中间ca生成csr文件</span><br><span class="line">openssl req -new -key intermediate_ca_key.pem -out intermediate_ca.csr</span><br></pre></td></tr></table></figure>
 
@@ -234,232 +260,36 @@
       </tags>
   </entry>
   <entry>
-    <title>Rve笔记</title>
-    <url>/2024/11/26/Rve%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<p>渗透测试课笔记</p>
-<span id="more"></span>
-
-<h3 id="数据的存储"><a href="#数据的存储" class="headerlink" title="数据的存储"></a>数据的存储</h3><p>1 qword &#x3D; 2 dword &#x3D; 4 word &#x3D; 8 byte &#x3D; 64 bit  </p>
-<p>小端存储：数据的<strong>低位</strong>放在<strong>低地址</strong>空间，数据的<strong>高位</strong>放在<strong>高地址</strong>空间</p>
-<p>大端存储：数据的<strong>高位</strong>放在<strong>低地址</strong>空间，数据的<strong>低位</strong>放在<strong>高地址</strong>空间</p>
-<p><strong>eg:存放的时候是以一个存储单元为单位来存放，存储单元内部不需要再转变顺序！！！</strong></p>
-<p>例如低位0001-0101存放在0号地址，不需要把它变成1010-1000！！！</p>
-<p>eg:读取时都是从低地址开始读数据</p>
-<p>汇编代码示例：</p>
-<img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/1.png" alt="1" style="zoom:67%;">
-
-<p>在汇编代码中定义变量，db 表示字节类型，dw 表示字类型，dd 表示双字类型。而在表示数值的时候，以h 结尾的表示十六进制数，以 b 结尾的表示 2 进制数，结尾处没有修饰符的默认为十进制数。</p>
-<h3 id="汇编语言"><a href="#汇编语言" class="headerlink" title="汇编语言"></a>汇编语言</h3><h5 id="八个通用寄存器"><a href="#八个通用寄存器" class="headerlink" title="八个通用寄存器"></a>八个通用寄存器</h5><p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/2.png"></p>
-<p>EAX：累加器，在乘法和除法指令中被自动使用；在 Win32 中，一般用在函数的返回值中。</p>
-<p>EBX：基址寄存器，DS 段中的数据指针。</p>
-<p>ECX：计数器，CPU 自动使用 ECX 作为循环计数器，在字符串和循环操作中常用，在循环指令（LOOP）或串操作中，ECX 用来进行循环计数，每执行一次循环，ECX 都会被CPU 自动减一。</p>
-<p>EDX：数据寄存器。</p>
-<p>​	以上 4 个寄存器主要用在算数运算与逻辑运算指令中，常用来保存各种需要计算的值。</p>
-<p>EBP：扩展基址指针寄存器，SS 段中堆栈内数据指针。EBP 由高级语言用来引用参数和局部变量，通常称为堆栈基址指针寄存器。</p>
-<p>ESP：堆栈指针寄存器，SS 段中堆栈指针。ESP 用来寻址堆栈上的数据，ESP 寄存器一般不参与算数运算，通常称为堆栈指针寄存器。</p>
-<p>ESI：源变址寄存器，字符串操作源指针。</p>
-<p>EDI：目的变址寄存器，字符串操作目标指针。</p>
-<p>​	以上 4 个寄存器主要用作保存内存地址的指针。</p>
-<p>ESI 和 EDI 通常用于内存数据的传递，因此才被称为源指针寄存器和目的指针寄存器。ESI和 EDI 与特定的指令 LODS、STOS、REP、MOVS 等一起使用，主要用于内存中数据的复制。</p>
-<p>ESP 指示堆栈区域的栈顶地址，PUSH、POP、CALL、RET 等指令可以直接用来操作 ESP指针。EBP 指示堆栈区域的基地址。</p>
-<p>栈的生长方向：向低地址方向生长</p>
-<p>堆的生长方向：向高地址方向生长</p>
-<h5 id="指令指针寄存器"><a href="#指令指针寄存器" class="headerlink" title="指令指针寄存器"></a>指令指针寄存器</h5><p>EIP：保存着下一条要执行的指令的地址</p>
-<h5 id="段寄存器"><a href="#段寄存器" class="headerlink" title="段寄存器"></a>段寄存器</h5><p>存放段的基地址，段是一块预分配的内存区域。有些段存放有程序的指令， 有些则存放有程序的变量，另外还有其他的段，如堆栈段存放着函数变量和函数参数等。<br>在 16 位 CPU 中，段寄存器只有 4 个，分别是 CS（代码段）、DS（数据段）、SS（堆栈段）和 ES（附加数据段）。 在 32 位的 CPU 中，<br>段寄存器从 4 个扩展为 6 个，分别是 CS、DS、SS、ES、FS 和 GS。 FS 和 GS 段寄存器也属于附加的段寄存器。</p>
-<h5 id="标志寄存器"><a href="#标志寄存器" class="headerlink" title="标志寄存器"></a>标志寄存器</h5><p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/3.png"></p>
-<p>OF（OverFlow Flag）：溢出标志位，用来反映有符号数加减法运算所得结果是否溢出。 如果运算超过当前运算位数所能表示的范围，则称为溢出，该标志位被置为 1，否则为 0； </p>
-<p>SF（Sign Flag）：符号标志位，用来反映运算结果的符号位。运算结果为负时为 1， 否则为 0。 ； </p>
-<p>ZF（Zero Flag）：零标志位，用来反映运算结果是否为 0。运算结果为 0 时该标志位 被置为 1，否则为 0； </p>
-<p>AF（Auxiliary carry Flag）：辅助进位标志位。在字操作时，发生低字节向高字节进位 或借位时该标志位被置为 1，否则为 0（注意：在字节操作时，发生低 4 位向高 4 为进位或借 位时该标志位被置为 1，否则为 0）；</p>
-<p>PF（Parity Flag）：奇偶标志位，用于反映结果中“1”的个数的奇偶性。如果“1” 的个数为偶数，该标志位被置为 1，否则为 0。</p>
-<p>CF（Carry Flag）：进位标志位。运算结果的最高位产生了一个进位或借位，则该标 志位被置为 1，否则为 0；</p>
-<h5 id="常用汇编指令集"><a href="#常用汇编指令集" class="headerlink" title="常用汇编指令集"></a>常用汇编指令集</h5><h6 id="数据传递指令"><a href="#数据传递指令" class="headerlink" title="数据传递指令"></a>数据传递指令</h6><blockquote>
-<p>mov 目的操作数，源操作数</p>
-</blockquote>
-<p>mov 指令是最常见的数据传送指令，它的功能等同于高级语言中的赋值语句。</p>
-<p>内存与内存之间是无法直接传递数据的，目的操作数不能为立即数，两个操作数的宽度必须一致。</p>
-<p>mov eax, 12345678h </p>
-<p>mov eax, dword ptr [00401000h] </p>
-<p>mov eax, ebx </p>
-<p>mov word ptr [00401000h], 1234h </p>
-<p>mov byte ptr [00401000h], al</p>
-<blockquote>
-<p>xchg 目的操作数, 源操作数</p>
-</blockquote>
-<p>xchg 指令的功能是交换两个操作数的数据。该指令有两个参数，分别是源操作数和目的操作数。</p>
-<p>xchg 指令允许寄存器和寄存器之间交换数据，也允许寄存器和内存之间交换数据，但是内存和内存之间是不能进行数据交换的。</p>
-<p>XCHG EAX,EBX  </p>
-<p>XCHG DWORD PTR DS:[403020],EBX  </p>
-<p>XCHG WORD PTR DS:[403024],CX </p>
-<blockquote>
-<p>Lea 目的操作数，源操作数</p>
-<p>lea r32, mem</p>
-</blockquote>
-<p>lea 指令是将 mem 的地址装入到一个 32 位的寄存器当中。</p>
-<h6 id="逻辑运算指令"><a href="#逻辑运算指令" class="headerlink" title="逻辑运算指令"></a>逻辑运算指令</h6><blockquote>
-<p>常用的逻辑运算有 and（与）、or（或）、xor（异或）和 not（非）。</p>
-<p>and&#x2F;xor&#x2F;not 目的操作数，源操作数</p>
-<p>not 目的操作数</p>
-</blockquote>
-<p>and&#x2F;xor&#x2F;not 指令影响的标志位有 OF、SF、ZF、PF 和 CF。</p>
-<p>结果存到目的操作数中</p>
-<h6 id="算术运算指令"><a href="#算术运算指令" class="headerlink" title="算术运算指令"></a>算术运算指令</h6><p>add  目的操作数，源操作数   &#x2F;&#x2F; 目的操作数 &#x3D; 目的操作数 + 源操作数 </p>
-<p>sub  目的操作数，源操作数   &#x2F;&#x2F; 目的操作数 &#x3D; 目的操作数 - 源操作数 </p>
-<p>adc  目的操作数，源操作数   &#x2F;&#x2F; 目的操作数 &#x3D; 目的操作数 + 源操作数 + CF位的值</p>
-<p>sbb  目的操作数，源操作数   &#x2F;&#x2F; 目的操作数 &#x3D; 目的操作数 - 源操作数 - CF位的值 </p>
-<p>inc  目的操作数   &#x2F;&#x2F; 目的操作数 &#x3D; 目的操作数 + 1</p>
-<p>dec  目的操作数  &#x2F;&#x2F; 目的操作数 &#x3D; 目的操作数 - 1</p>
-<h6 id="堆栈操作指令"><a href="#堆栈操作指令" class="headerlink" title="堆栈操作指令"></a>堆栈操作指令</h6><blockquote>
-<p>堆栈数据操作指令</p>
-<p>push reg&#x2F;mem&#x2F;imm </p>
-<p>pop reg&#x2F;mem</p>
-</blockquote>
-<blockquote>
-<p>保存&#x2F;恢复通用寄存器现场</p>
-<p>Pushad </p>
-<p>Popad</p>
-</blockquote>
-<p>pushad 指令在堆栈上按 顺序压入所有的 32 位通用寄存器，顺序依次是 EAX、ECX、EDX、EBX、ESP、EBP、ESI 和 EDI</p>
-<p>popad 指令以相反的顺序从堆栈中弹出这些通用寄存器</p>
-<h6 id="转移指令"><a href="#转移指令" class="headerlink" title="转移指令"></a>转移指令</h6><blockquote>
-<p>Jmp reg&#x2F;mem&#x2F;imm</p>
-</blockquote>
-<p>无条件跳转指令，直接改变EIP的值</p>
-<blockquote>
-<p>条件转移指令</p>
-</blockquote>
-<p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/4.png"></p>
-<p>cmp指令</p>
-<blockquote>
-<p>Cmp reg, imm&#x2F;reg&#x2F;mem </p>
-<p>Cmp mem, imm&#x2F;reg</p>
-</blockquote>
-<p>比较两个数是否相等</p>
-<blockquote>
-<p>call reg&#x2F;mem&#x2F;imm</p>
-</blockquote>
-<p>call 指令是调用过程（函数）的指令，它的作用类似于 jmp 指令，可以修改 EIP 寄存器的值，从而使指令转移到其他地址继续执行。</p>
-<p>与 jmp 指令不同的地方是，call 指令在修改 EIP 寄存器的值之前，会将 call 指令的下一条指令的地址保存至堆栈，以便在调用过程（函数） 后再继续从 call 指令处执行</p>
-<p>循环指令</p>
-<blockquote>
-<p>LOOP 00401010</p>
-</blockquote>
-<p>当ecx寄存器中的值大于0时，EIP跳转到00401010，跳转后ecx减一</p>
-<h6 id="寻址"><a href="#寻址" class="headerlink" title="寻址"></a>寻址</h6><p>MOV EAX, DWORD PTR [00403000]  直接寻址</p>
-<p>MOV EDX, [EAX]  间接寻址</p>
-<h3 id="OD工具"><a href="#OD工具" class="headerlink" title="OD工具"></a>OD工具</h3><p>分为反汇编窗口，寄存器窗口，数据窗口，栈窗口，信息窗口</p>
-<p>F2  在选中处添加断点</p>
-<p>F4 运行到选中处</p>
-<p>F8  单步步过，每按一次这个键执行一条反汇编窗口中的一条指令，遇到 CALL 等子程序不进入其代码。</p>
-<p>F7：单步步入，功能同单步步过(F8)类似，区别是遇到 CALL 等子程序时会进入其中，进入后首先会停留在子程序的第一条指令上。</p>
-<p>软件断点，硬件断点</p>
-<h3 id="PE文件"><a href="#PE文件" class="headerlink" title="PE文件"></a>PE文件</h3><ul>
-<li><p>PE：Portable Executable File Format（可移植的执行体）。</p>
-</li>
-<li><p>.exe与.dll文件都是PE格式。</p>
-</li>
-<li><p>虚拟内存地址 ( VA ) VA &#x3D; 进程的基地址 + RVA</p>
-</li>
-<li><p>相对虚拟内存地址 ( RVA )</p>
-</li>
-<li><p>文件偏移地址 ( FOA )</p>
-</li>
+    <title></title>
+    <url>/2025/06/07/%E8%8E%B7%E5%8F%96kernel32%E5%9F%BA%E5%9D%80/</url>
+    <content><![CDATA[<p><strong><code>kernel32.dll</code>中两个重要函数</strong>:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">HMODULE LoadLibraryA([in] LPCSTR lpLibFileName);</span><br></pre></td></tr></table></figure>
+<p>在运行时动态加载指定的 <code>DLL</code>，并获得该 <code>DLL</code> 的模块句柄。加载 <code>DLL</code> 可以提供程序所需的额外功能或资源，增强程序的灵活性和可扩展性。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">FARPROC GetProcAddress(</span><br><span class="line">  [in] HMODULE hModule,</span><br><span class="line">  [in] LPCSTR  lpProcName</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>从指定的动态链接库<code>(DLL)</code>检索导出函数 (也称为过程) 或变量的地址。</p>
+<p><strong>获取<code>kernel32.dll</code>基址-暴力搜索</strong><br>原理：</p>
+<ul>
+<li>每个进程必定加载<code>kernel32.dll</code></li>
+<li>且加载在<code>xxxx0000h</code>处-高端内存，<code>MIN_KERNEL_SEARCH_BASE=70000000H</code> ，分配粒度是<code>10000h</code></li>
+<li>进程启动时，<code>kernel32</code>会调用程序入口点，其返回地址在栈中指向<code>kernel32</code>内部。</li>
+<li><code>kernel32.dll</code>也是标准的<code>PE</code>结构文件，存在<code>MZ</code>头</li>
 </ul>
-<h5 id="虚拟内存地址与相对虚拟内存地址"><a href="#虚拟内存地址与相对虚拟内存地址" class="headerlink" title="虚拟内存地址与相对虚拟内存地址"></a>虚拟内存地址与相对虚拟内存地址</h5><p>用户的 PE 文件被操作系统加载进内存后， PE 对应的进程支配了自己独立的 4GB 虚拟空间。</p>
-<p>在这个空间中定位的地址称为虚拟内存地址 (Virtual Address ，VA )</p>
-<p> 进程本身的 VA &#x3D;进程的基地址 + 相对 虚拟内存地址 。</p>
-<p>相对虚拟内存地址 (Relative Virtual Address ，RVA ) 是相对于基地址的偏移RVA 是某个特定位置距离某个模块基地址的偏移量<img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/5.png" style="zoom:50%;"></p>
-<h5 id="文件偏移地址"><a href="#文件偏移地址" class="headerlink" title="文件偏移地址"></a>文件偏移地址</h5><p>文件偏移地址 (File OffsetAddress ，FOA )  和内存无关 ，它是指某个位置距离文件头的偏移。</p>
-<p>静态的，硬盘上的PE文件。</p>
-<p>虚拟地址是动态的，内存的，两者有区别。</p>
-<h5 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h5><p>PE 数据结构 中的指针的定义:如果数据结构中某个 字段存储的值为一个地址，那么这个字段就是一个指针。BookStore.Address 是一个指针， Book.Address 也是一个指针 。有时候，你还会遇到 一个指针指向了 另一个指针 的情况。</p>
-<h5 id="数据目录"><a href="#数据目录" class="headerlink" title="数据目录"></a>数据目录</h5><p>Windows 下的可执行文件是 PE 中的一种，这种文件中除了包含代码及数据段的相关数据 以外，还包含许多与文件执行有关的其他数据，比如引用外部函数的信息、 PE 程序的图标、 内部导出函数等，这些数据可能会随着操作系统新特性的出现而增加。</p>
-<p>PE 中有一个数据结构称为 数据目录 ，其中记录了所有可能的数据类型。</p>
-<p>目前已定义的有 15 种，包括导出表 、导入表、资源表、 异常表、属性证书表 、重定位表等。</p>
-<h5 id="节"><a href="#节" class="headerlink" title="节"></a>节</h5><p>节就是存放不同类型数据(比如代码、数据、常量、资源等)的地方，不同的节具有不同的访问权限。节是 PE 文件中存放代码或数据的基本单元 。</p>
-<p>比如”.data”   声明的是初始化的数据， “.data?” 声明的是未初始化的数据， “.code”  声明的是可执行的代码等</p>
-<h5 id="内存对齐"><a href="#内存对齐" class="headerlink" title="内存对齐"></a>内存对齐</h5><p>由于 Windows 操作系统对内 存属性的设置以页为单位.</p>
-<p>节在内存中的对齐单位必须至少是一个页的大小。</p>
-<p>32 位的 Windows 系统来说，这个值是 4KB ( 1000h）</p>
-<p>64 位操作系统来说，这个值就是 8KB (2000h )。</p>
-<h5 id="文件对齐"><a href="#文件对齐" class="headerlink" title="文件对齐"></a>文件对齐</h5><p>通常会以一个物理扇区的大小 作为对齐粒度的值，即 512 字节，十六进制表示为 200h 。</p>
-<p>出于节约资源的考虑，操作系统允许节在内存和文件中的对齐尺寸不 一致。</p>
-<p>造成了 PE 在文件中和在内存中的大小也会不一致 。也就是说， PE 在内存中的尺寸要比在文件中的尺寸大 。</p>
-<h5 id="资源对齐"><a href="#资源对齐" class="headerlink" title="资源对齐"></a>资源对齐</h5><p>资源文件中，资源字节码部分一般要求以双字 (4 个字节）方式对齐</p>
-<h5 id="Unicode字符串"><a href="#Unicode字符串" class="headerlink" title="Unicode字符串"></a>Unicode字符串</h5><p>Unicode 是继 ASCII 字符编码后的另一种新型字符编码 。</p>
-<p>严格意义上讲， ASCll 码的每个 字符使用 7 位表示， Unicode 则使用全16 位表示一个字符。</p>
-<p>Unicode 字符串中的每个字符均为 双字节 ，所以又称为宽字符串。</p>
-<p>由于 Unicode 兼容 ASCII 字符 ，所以被大多数程序所支持，如 Windows 内核。</p>
-<p>Unicode 的前 128 个字符码同ASCII 码具有同样字 节值。</p>
-<p>字母a: ASCll 编码是 0x61 ;Unicode  编码是 0x0061。</p>
-<h5 id="32位系统下的PE结构"><a href="#32位系统下的PE结构" class="headerlink" title="32位系统下的PE结构"></a>32位系统下的PE结构</h5><p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/6.png"></p>
-<p>因为在 DOS MZ 头中有一个字段 非常重要</p>
-<p>IMAGE_DOS_HEADER .e_lfanew ,操作系统定位标准的PE 头部，修改这个值可以去掉DOS头</p>
-<img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/7.png" style="zoom:80%;">
-
-<p>程序员眼中的PE结构：</p>
-<p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/8.png"></p>
-<p>标准PE头：</p>
-<p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/12.png"></p>
-<p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/11.png"></p>
-<p>尽管从名字上看好像该部分数据是可选(optional ) 的，但在 PE 文件结构中，比标准 PE 头更多的内容，让人感觉似乎包才是真正的 PE 头。</p>
-<p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/9.png"></p>
-<p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/10.png"></p>
-<p>IMAGE_OPTIONAL_HEADER32   (扩展PE 头〉结构 的最后一个字段为 DataDirectory 。是一个IMAGE_DATA_DIRECTORY结构数组，有16个这样的元素。</p>
-<p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/13.png"></p>
-<p>16个结构数组分别表示</p>
-<p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/14.png"></p>
-<p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/15.png"></p>
-<p>节表结构：</p>
-<p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/16.png"></p>
-<h3 id="导入表"><a href="#导入表" class="headerlink" title="导入表"></a>导入表</h3><p>导入表结构：</p>
-<p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/17.png"></p>
-<p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/18.png"></p>
-<p>当 PE 被加载进虚拟地址 空间以后， IAT 的内容会被操作系统更改为函数的 VA 。这个修改最终会导致通向“值一名称”描述的桥 2 发生断裂。</p>
-<p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/19.png"></p>
-<p>桥 1 指向的地址列表被定义为 INT (Import Name Table)。</p>
-<p>桥 2 指向的地址列表被定义为 IAT (lmport Address Table) 。</p>
-<h3 id="导出表"><a href="#导出表" class="headerlink" title="导出表"></a>导出表</h3><p>导出表结构：</p>
-<p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/20.png"></p>
-<p>目录：</p>
-<p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/21.png"></p>
-<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p>内存中的栈结构：</p>
-<p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/22.png"></p>
-<p>在对栈进行操作时，一定要维系栈平衡，即压入多少字节最后就要弹出多少字节， 否则会导致程序运行出现错误</p>
-<p>将调用函数用到的参数入栈。将call指令的下一条指令入栈，以备返回。保存原始 ebp指针函数准备栈空间，ebp指向栈中该函数的基地址。为函数中定义的局部变量开辟栈空间（通过调整 esp来完成）运行函数中定义的语句。清理局部变量，恢复原始的ebp指 针-leave返回步骤 2 保存的下一条指令处执行，同时清理栈中的函数参数（通过指令retn 8 完成，为什么是8？）答：之前压了2个参数，弹出EIP后，要将EXP再加8，将栈指针恢复到调用函数之前</p>
-<p><img src="/2024/11/26/Rve%E7%AC%94%E8%AE%B0/23.png"></p>
-<p>在函数中，利用ebp+n读取参数，ebp-n读取局部变量</p>
-<p>栈溢出原理：将edi记录为ebp-4（即第一个局部变量），将其循环修改值，将局部变量填充满，再将原EBP填充满，最后将EIP修改</p>
+<p><strong>获取<code>kernel32.dll</code>基址-<code>PEB</code>搜索</strong></p>
+<ul>
+<li>基于<code>PEB</code>搜索-<code>TEB</code>（<code>Thread Environment Block</code>，线程环境块）系统在此<code>TEB</code>中保存频繁使用的线程相关的数据。可通过<code>CPU</code>的<code>FS</code>寄存器来访问该段，一般存储在<code>[FS:0]</code></li>
+<li><code>PEB</code>（<code>Process Environment Block</code>，进程环境块）存放进程信息，每个进程都有自己的<code>PEB</code>信息。位于用户地址空间。可在<code>TEB</code>结构地址偏移<code>0x30</code>处获得<code>PEB</code>的地址位置。</li>
+<li><code>PEB_LDR_DATA</code> 结构体(包含载入的<code>dll</code>信息)，里面包含了三个双向链表，<br><code>InLoadOrderModuleList</code> 按加载顺序的模块链表<br><code>InMemoryOrderModuleList</code> 按内存位置的模块链表<br><code>InInitializationOrderModuleList</code> 按初始化顺序<br>该结构体在<code>PEB</code>中偏移<code>0x0C</code>的位置</li>
+</ul>
+<p>常规结构如下：<br>![[5600d7f10843cf4bdc8f6d9990a33bc1.png]]</p>
+<p>汇编获取<code>kernel32.dll</code>基址示例：</p>
+<pre><code>mov eax, [fs:30h]        指向PEB
+mov eax, [eax + 0ch]  指向Ldr
+mov eax, [eax + 14h]  指向InMemoryOrderModuleList
+mov eax, [eax]             本进程模块
+mov eax, [eax]              ntdll模块
+mov eax, [eax -8h + 18h]   kernel32.Dll基址
+</code></pre>
 ]]></content>
-      <tags>
-        <tag>Rve</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2024/10/31/helloworld/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<h3 id="Illustrate"><a href="#Illustrate" class="headerlink" title="Illustrate"></a>Illustrate</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">![](image.png)</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2024/10/31/helloworld/test.png" alt="1"></p>
-]]></content>
-      <tags>
-        <tag>test</tag>
-      </tags>
   </entry>
   <entry>
     <title>mysql_server</title>
@@ -545,6 +375,209 @@
 ]]></content>
       <tags>
         <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>逆向工程笔记</title>
+    <url>/2024/11/26/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>笔记</p>
+<p>逆向工程课笔记</p>
+<span id="more"></span>
+
+<h3 id="数据的存储"><a href="#数据的存储" class="headerlink" title="数据的存储"></a>数据的存储</h3><p>1 qword &#x3D; 2 dword &#x3D; 4 word &#x3D; 8 byte &#x3D; 64 bit  </p>
+<p>小端存储：数据的<strong>低位</strong>放在<strong>低地址</strong>空间，数据的<strong>高位</strong>放在<strong>高地址</strong>空间</p>
+<p>大端存储：数据的<strong>高位</strong>放在<strong>低地址</strong>空间，数据的<strong>低位</strong>放在<strong>高地址</strong>空间</p>
+<p><strong>eg:存放的时候是以一个存储单元为单位来存放，存储单元内部不需要再转变顺序！！！</strong></p>
+<p>例如低位0001-0101存放在0号地址，不需要把它变成1010-1000！！！</p>
+<p>eg:读取时都是从低地址开始读数据</p>
+<p>汇编代码示例：</p>
+<img src="images/1.png" alt="1" style="zoom:67%;" />
+
+<p>在汇编代码中定义变量，db 表示字节类型，dw 表示字类型，dd 表示双字类型。而在表示数值的时候，以h 结尾的表示十六进制数，以 b 结尾的表示 2 进制数，结尾处没有修饰符的默认为十进制数。</p>
+<h3 id="汇编语言"><a href="#汇编语言" class="headerlink" title="汇编语言"></a>汇编语言</h3><h5 id="八个通用寄存器"><a href="#八个通用寄存器" class="headerlink" title="八个通用寄存器"></a>八个通用寄存器</h5><p><img src="/images/2.png"></p>
+<p>EAX：累加器，在乘法和除法指令中被自动使用；在 Win32 中，一般用在函数的返回值中。</p>
+<p>EBX：基址寄存器，DS 段中的数据指针。</p>
+<p>ECX：计数器，CPU 自动使用 ECX 作为循环计数器，在字符串和循环操作中常用，在循环指令（LOOP）或串操作中，ECX 用来进行循环计数，每执行一次循环，ECX 都会被CPU 自动减一。</p>
+<p>EDX：数据寄存器。</p>
+<p>​	以上 4 个寄存器主要用在算数运算与逻辑运算指令中，常用来保存各种需要计算的值。</p>
+<p>EBP：扩展基址指针寄存器，SS 段中堆栈内数据指针。EBP 由高级语言用来引用参数和局部变量，通常称为堆栈基址指针寄存器。</p>
+<p>ESP：堆栈指针寄存器，SS 段中堆栈指针。ESP 用来寻址堆栈上的数据，ESP 寄存器一般不参与算数运算，通常称为堆栈指针寄存器。</p>
+<p>ESI：源变址寄存器，字符串操作源指针。</p>
+<p>EDI：目的变址寄存器，字符串操作目标指针。</p>
+<p>​	以上 4 个寄存器主要用作保存内存地址的指针。</p>
+<p>ESI 和 EDI 通常用于内存数据的传递，因此才被称为源指针寄存器和目的指针寄存器。ESI和 EDI 与特定的指令 LODS、STOS、REP、MOVS 等一起使用，主要用于内存中数据的复制。</p>
+<p>ESP 指示堆栈区域的栈顶地址，PUSH、POP、CALL、RET 等指令可以直接用来操作 ESP指针。EBP 指示堆栈区域的基地址。</p>
+<p>栈的生长方向：向低地址方向生长</p>
+<p>堆的生长方向：向高地址方向生长</p>
+<h5 id="指令指针寄存器"><a href="#指令指针寄存器" class="headerlink" title="指令指针寄存器"></a>指令指针寄存器</h5><p>EIP：保存着下一条要执行的指令的地址</p>
+<h5 id="段寄存器"><a href="#段寄存器" class="headerlink" title="段寄存器"></a>段寄存器</h5><p>存放段的基地址，段是一块预分配的内存区域。有些段存放有程序的指令， 有些则存放有程序的变量，另外还有其他的段，如堆栈段存放着函数变量和函数参数等。<br>在 16 位 CPU 中，段寄存器只有 4 个，分别是 CS（代码段）、DS（数据段）、SS（堆栈段）和 ES（附加数据段）。 在 32 位的 CPU 中，<br>段寄存器从 4 个扩展为 6 个，分别是 CS、DS、SS、ES、FS 和 GS。 FS 和 GS 段寄存器也属于附加的段寄存器。</p>
+<h5 id="标志寄存器"><a href="#标志寄存器" class="headerlink" title="标志寄存器"></a>标志寄存器</h5><p><img src="/images/3.png"></p>
+<p>OF（OverFlow Flag）：溢出标志位，用来反映有符号数加减法运算所得结果是否溢出。 如果运算超过当前运算位数所能表示的范围，则称为溢出，该标志位被置为 1，否则为 0； </p>
+<p>SF（Sign Flag）：符号标志位，用来反映运算结果的符号位。运算结果为负时为 1， 否则为 0。 ； </p>
+<p>ZF（Zero Flag）：零标志位，用来反映运算结果是否为 0。运算结果为 0 时该标志位 被置为 1，否则为 0； </p>
+<p>AF（Auxiliary carry Flag）：辅助进位标志位。在字操作时，发生低字节向高字节进位 或借位时该标志位被置为 1，否则为 0（注意：在字节操作时，发生低 4 位向高 4 为进位或借 位时该标志位被置为 1，否则为 0）；</p>
+<p>PF（Parity Flag）：奇偶标志位，用于反映结果中“1”的个数的奇偶性。如果“1” 的个数为偶数，该标志位被置为 1，否则为 0。</p>
+<p>CF（Carry Flag）：进位标志位。运算结果的最高位产生了一个进位或借位，则该标 志位被置为 1，否则为 0；</p>
+<h5 id="常用汇编指令集"><a href="#常用汇编指令集" class="headerlink" title="常用汇编指令集"></a>常用汇编指令集</h5><h6 id="数据传递指令"><a href="#数据传递指令" class="headerlink" title="数据传递指令"></a>数据传递指令</h6><blockquote>
+<p>mov 目的操作数，源操作数</p>
+</blockquote>
+<p>mov 指令是最常见的数据传送指令，它的功能等同于高级语言中的赋值语句。</p>
+<p>内存与内存之间是无法直接传递数据的，目的操作数不能为立即数，两个操作数的宽度必须一致。</p>
+<p>mov eax, 12345678h </p>
+<p>mov eax, dword ptr [00401000h] </p>
+<p>mov eax, ebx </p>
+<p>mov word ptr [00401000h], 1234h </p>
+<p>mov byte ptr [00401000h], al</p>
+<blockquote>
+<p>xchg 目的操作数, 源操作数</p>
+</blockquote>
+<p>xchg 指令的功能是交换两个操作数的数据。该指令有两个参数，分别是源操作数和目的操作数。</p>
+<p>xchg 指令允许寄存器和寄存器之间交换数据，也允许寄存器和内存之间交换数据，但是内存和内存之间是不能进行数据交换的。</p>
+<p>XCHG EAX,EBX  </p>
+<p>XCHG DWORD PTR DS:[403020],EBX  </p>
+<p>XCHG WORD PTR DS:[403024],CX </p>
+<blockquote>
+<p>Lea 目的操作数，源操作数</p>
+<p>lea r32, mem</p>
+</blockquote>
+<p>lea 指令是将 mem 的地址装入到一个 32 位的寄存器当中。</p>
+<h6 id="逻辑运算指令"><a href="#逻辑运算指令" class="headerlink" title="逻辑运算指令"></a>逻辑运算指令</h6><blockquote>
+<p>常用的逻辑运算有 and（与）、or（或）、xor（异或）和 not（非）。</p>
+<p>and&#x2F;xor&#x2F;not 目的操作数，源操作数</p>
+<p>not 目的操作数</p>
+</blockquote>
+<p>and&#x2F;xor&#x2F;not 指令影响的标志位有 OF、SF、ZF、PF 和 CF。</p>
+<p>结果存到目的操作数中</p>
+<h6 id="算术运算指令"><a href="#算术运算指令" class="headerlink" title="算术运算指令"></a>算术运算指令</h6><p>add  目的操作数，源操作数   &#x2F;&#x2F; 目的操作数 &#x3D; 目的操作数 + 源操作数 </p>
+<p>sub  目的操作数，源操作数   &#x2F;&#x2F; 目的操作数 &#x3D; 目的操作数 - 源操作数 </p>
+<p>adc  目的操作数，源操作数   &#x2F;&#x2F; 目的操作数 &#x3D; 目的操作数 + 源操作数 + CF位的值</p>
+<p>sbb  目的操作数，源操作数   &#x2F;&#x2F; 目的操作数 &#x3D; 目的操作数 - 源操作数 - CF位的值 </p>
+<p>inc  目的操作数   &#x2F;&#x2F; 目的操作数 &#x3D; 目的操作数 + 1</p>
+<p>dec  目的操作数  &#x2F;&#x2F; 目的操作数 &#x3D; 目的操作数 - 1</p>
+<h6 id="堆栈操作指令"><a href="#堆栈操作指令" class="headerlink" title="堆栈操作指令"></a>堆栈操作指令</h6><blockquote>
+<p>堆栈数据操作指令</p>
+<p>push reg&#x2F;mem&#x2F;imm </p>
+<p>pop reg&#x2F;mem</p>
+</blockquote>
+<blockquote>
+<p>保存&#x2F;恢复通用寄存器现场</p>
+<p>Pushad </p>
+<p>Popad</p>
+</blockquote>
+<p>pushad 指令在堆栈上按 顺序压入所有的 32 位通用寄存器，顺序依次是 EAX、ECX、EDX、EBX、ESP、EBP、ESI 和 EDI</p>
+<p>popad 指令以相反的顺序从堆栈中弹出这些通用寄存器</p>
+<h6 id="转移指令"><a href="#转移指令" class="headerlink" title="转移指令"></a>转移指令</h6><blockquote>
+<p>Jmp reg&#x2F;mem&#x2F;imm</p>
+</blockquote>
+<p>无条件跳转指令，直接改变EIP的值</p>
+<blockquote>
+<p>条件转移指令</p>
+</blockquote>
+<p><img src="/images/4.png"></p>
+<p>cmp指令</p>
+<blockquote>
+<p>Cmp reg, imm&#x2F;reg&#x2F;mem </p>
+<p>Cmp mem, imm&#x2F;reg</p>
+</blockquote>
+<p>比较两个数是否相等</p>
+<blockquote>
+<p>call reg&#x2F;mem&#x2F;imm</p>
+</blockquote>
+<p>call 指令是调用过程（函数）的指令，它的作用类似于 jmp 指令，可以修改 EIP 寄存器的值，从而使指令转移到其他地址继续执行。</p>
+<p>与 jmp 指令不同的地方是，call 指令在修改 EIP 寄存器的值之前，会将 call 指令的下一条指令的地址保存至堆栈，以便在调用过程（函数） 后再继续从 call 指令处执行</p>
+<p>循环指令</p>
+<blockquote>
+<p>LOOP 00401010</p>
+</blockquote>
+<p>当ecx寄存器中的值大于0时，EIP跳转到00401010，跳转后ecx减一</p>
+<h6 id="寻址"><a href="#寻址" class="headerlink" title="寻址"></a>寻址</h6><p>MOV EAX, DWORD PTR [00403000]  直接寻址</p>
+<p>MOV EDX, [EAX]  间接寻址</p>
+<h3 id="OD工具"><a href="#OD工具" class="headerlink" title="OD工具"></a>OD工具</h3><p>分为反汇编窗口，寄存器窗口，数据窗口，栈窗口，信息窗口</p>
+<p>F2  在选中处添加断点</p>
+<p>F4 运行到选中处</p>
+<p>F8  单步步过，每按一次这个键执行一条反汇编窗口中的一条指令，遇到 CALL 等子程序不进入其代码。</p>
+<p>F7：单步步入，功能同单步步过(F8)类似，区别是遇到 CALL 等子程序时会进入其中，进入后首先会停留在子程序的第一条指令上。</p>
+<p>软件断点，硬件断点</p>
+<h3 id="PE文件"><a href="#PE文件" class="headerlink" title="PE文件"></a>PE文件</h3><ul>
+<li><p>PE：Portable Executable File Format（可移植的执行体）。</p>
+</li>
+<li><p>.exe与.dll文件都是PE格式。</p>
+</li>
+<li><p>虚拟内存地址 ( VA ) VA &#x3D; 进程的基地址 + RVA</p>
+</li>
+<li><p>相对虚拟内存地址 ( RVA )</p>
+</li>
+<li><p>文件偏移地址 ( FOA )</p>
+</li>
+</ul>
+<h5 id="虚拟内存地址与相对虚拟内存地址"><a href="#虚拟内存地址与相对虚拟内存地址" class="headerlink" title="虚拟内存地址与相对虚拟内存地址"></a>虚拟内存地址与相对虚拟内存地址</h5><p>用户的 PE 文件被操作系统加载进内存后， PE 对应的进程支配了自己独立的 4GB 虚拟空间。</p>
+<p>在这个空间中定位的地址称为虚拟内存地址 (Virtual Address ，VA )</p>
+<p> 进程本身的 VA &#x3D;进程的基地址 + 相对 虚拟内存地址 。</p>
+<p>相对虚拟内存地址 (Relative Virtual Address ，RVA ) 是相对于基地址的偏移RVA 是某个特定位置距离某个模块基地址的偏移量<img src="images/5.png" style="zoom:50%;" /></p>
+<h5 id="文件偏移地址"><a href="#文件偏移地址" class="headerlink" title="文件偏移地址"></a>文件偏移地址</h5><p>文件偏移地址 (File OffsetAddress ，FOA )  和内存无关 ，它是指某个位置距离文件头的偏移。</p>
+<p>静态的，硬盘上的PE文件。</p>
+<p>虚拟地址是动态的，内存的，两者有区别。</p>
+<h5 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h5><p>PE 数据结构 中的指针的定义:如果数据结构中某个 字段存储的值为一个地址，那么这个字段就是一个指针。BookStore.Address 是一个指针， Book.Address 也是一个指针 。有时候，你还会遇到 一个指针指向了 另一个指针 的情况。</p>
+<h5 id="数据目录"><a href="#数据目录" class="headerlink" title="数据目录"></a>数据目录</h5><p>Windows 下的可执行文件是 PE 中的一种，这种文件中除了包含代码及数据段的相关数据 以外，还包含许多与文件执行有关的其他数据，比如引用外部函数的信息、 PE 程序的图标、 内部导出函数等，这些数据可能会随着操作系统新特性的出现而增加。</p>
+<p>PE 中有一个数据结构称为 数据目录 ，其中记录了所有可能的数据类型。</p>
+<p>目前已定义的有 15 种，包括导出表 、导入表、资源表、 异常表、属性证书表 、重定位表等。</p>
+<h5 id="节"><a href="#节" class="headerlink" title="节"></a>节</h5><p>节就是存放不同类型数据(比如代码、数据、常量、资源等)的地方，不同的节具有不同的访问权限。节是 PE 文件中存放代码或数据的基本单元 。</p>
+<p>比如”.data”   声明的是初始化的数据， “.data?” 声明的是未初始化的数据， “.code”  声明的是可执行的代码等</p>
+<h5 id="内存对齐"><a href="#内存对齐" class="headerlink" title="内存对齐"></a>内存对齐</h5><p>由于 Windows 操作系统对内 存属性的设置以页为单位.</p>
+<p>节在内存中的对齐单位必须至少是一个页的大小。</p>
+<p>32 位的 Windows 系统来说，这个值是 4KB ( 1000h）</p>
+<p>64 位操作系统来说，这个值就是 8KB (2000h )。</p>
+<h5 id="文件对齐"><a href="#文件对齐" class="headerlink" title="文件对齐"></a>文件对齐</h5><p>通常会以一个物理扇区的大小 作为对齐粒度的值，即 512 字节，十六进制表示为 200h 。</p>
+<p>出于节约资源的考虑，操作系统允许节在内存和文件中的对齐尺寸不 一致。</p>
+<p>造成了 PE 在文件中和在内存中的大小也会不一致 。也就是说， PE 在内存中的尺寸要比在文件中的尺寸大 。</p>
+<h5 id="资源对齐"><a href="#资源对齐" class="headerlink" title="资源对齐"></a>资源对齐</h5><p>资源文件中，资源字节码部分一般要求以双字 (4 个字节）方式对齐</p>
+<h5 id="Unicode字符串"><a href="#Unicode字符串" class="headerlink" title="Unicode字符串"></a>Unicode字符串</h5><p>Unicode 是继 ASCII 字符编码后的另一种新型字符编码 。</p>
+<p>严格意义上讲， ASCll 码的每个 字符使用 7 位表示， Unicode 则使用全16 位表示一个字符。</p>
+<p>Unicode 字符串中的每个字符均为 双字节 ，所以又称为宽字符串。</p>
+<p>由于 Unicode 兼容 ASCII 字符 ，所以被大多数程序所支持，如 Windows 内核。</p>
+<p>Unicode 的前 128 个字符码同ASCII 码具有同样字 节值。</p>
+<p>字母a: ASCll 编码是 0x61 ;Unicode  编码是 0x0061。</p>
+<h5 id="32位系统下的PE结构"><a href="#32位系统下的PE结构" class="headerlink" title="32位系统下的PE结构"></a>32位系统下的PE结构</h5><p><img src="/images/6.png"></p>
+<p>因为在 DOS MZ 头中有一个字段 非常重要</p>
+<p>IMAGE_DOS_HEADER .e_lfanew ,操作系统定位标准的PE 头部，修改这个值可以去掉DOS头</p>
+<img src="images/7.png" style="zoom:80%;" />
+
+<p>程序员眼中的PE结构：</p>
+<p><img src="/images/8.png"></p>
+<p>标准PE头：</p>
+<p><img src="/images/12.png"></p>
+<p><img src="/images/11.png"></p>
+<p>尽管从名字上看好像该部分数据是可选(optional ) 的，但在 PE 文件结构中，比标准 PE 头更多的内容，让人感觉似乎包才是真正的 PE 头。</p>
+<p><img src="/images/9.png"></p>
+<p><img src="/images/10.png"></p>
+<p>IMAGE_OPTIONAL_HEADER32   (扩展PE 头〉结构 的最后一个字段为 DataDirectory 。是一个IMAGE_DATA_DIRECTORY结构数组，有16个这样的元素。</p>
+<p><img src="/images/13.png"></p>
+<p>16个结构数组分别表示</p>
+<p><img src="/images/14.png"></p>
+<p><img src="/images/15.png"></p>
+<p>节表结构：</p>
+<p><img src="/images/16.png"></p>
+<h3 id="导入表"><a href="#导入表" class="headerlink" title="导入表"></a>导入表</h3><p>导入表结构：</p>
+<p><img src="/images/17.png"></p>
+<p><img src="/images/18.png"></p>
+<p>当 PE 被加载进虚拟地址 空间以后， IAT 的内容会被操作系统更改为函数的 VA 。这个修改最终会导致通向“值一名称”描述的桥 2 发生断裂。</p>
+<p><img src="/images/19.png"></p>
+<p>桥 1 指向的地址列表被定义为 INT (Import Name Table)。</p>
+<p>桥 2 指向的地址列表被定义为 IAT (lmport Address Table) 。</p>
+<h3 id="导出表"><a href="#导出表" class="headerlink" title="导出表"></a>导出表</h3><p>导出表结构：</p>
+<p><img src="/images/20.png"></p>
+<p>目录：</p>
+<p><img src="/images/21.png"></p>
+<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p>内存中的栈结构：</p>
+<p><img src="/images/22.png"></p>
+<p>在对栈进行操作时，一定要维系栈平衡，即压入多少字节最后就要弹出多少字节， 否则会导致程序运行出现错误</p>
+<p>将调用函数用到的参数入栈。将call指令的下一条指令入栈，以备返回。保存原始 ebp指针函数准备栈空间，ebp指向栈中该函数的基地址。为函数中定义的局部变量开辟栈空间（通过调整 esp来完成）运行函数中定义的语句。清理局部变量，恢复原始的ebp指 针-leave返回步骤 2 保存的下一条指令处执行，同时清理栈中的函数参数（通过指令retn 8 完成，为什么是8？）答：之前压了2个参数，弹出EIP后，要将EXP再加8，将栈指针恢复到调用函数之前</p>
+<p><img src="/images/23.png"></p>
+<p>在函数中，利用ebp+n读取参数，ebp-n读取局部变量</p>
+<p>栈溢出原理：将edi记录为ebp-4（即第一个局部变量），将其循环修改值，将局部变量填充满，再将原EBP填充满，最后将EIP修改</p>
+]]></content>
+      <tags>
+        <tag>逆向</tag>
       </tags>
   </entry>
 </search>
