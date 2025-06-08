@@ -1,65 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Github_project_management</title>
-    <url>/2024/11/09/Github-project-management/</url>
-    <content><![CDATA[<p>​	关于将项目上传到github并进行管理，以及一些在使用过程中可能遇到的问题和解决方法。</p>
-<span id="more"></span>
-
-<blockquote>
-<p>Precondition:</p>
-<ol>
-<li>有一个github账号</li>
-<li>下载安装Git</li>
-</ol>
-</blockquote>
-<blockquote>
-<p>github常用的两种连接方式：</p>
-<p>https连接，如：<code>https://github.com/Roricallry/handwriting-numerals-recognition.git</code></p>
-<p>ssh连接，如：<code>git@github.com:Roricallry/handwriting-numerals-recognition.git</code></p>
-<p>https连接每次都需要密码，ssh连接可以做到无密码连接</p>
-</blockquote>
-<p>Git常用指令</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git init //把这个目录变成Git可以管理的仓库</span><br><span class="line">　　git add README.md //文件添加到仓库</span><br><span class="line">　　git add . //不但可以跟单一文件，还可以跟通配符，更可以跟目录。一个点就把当前目录下所有未追踪的文件全部add了 </span><br><span class="line">　　git commit -m &quot;first commit&quot; //把文件提交到仓库</span><br><span class="line">　　git remote add origin git@github.com:wangjiax9/practice.git //关联远程仓库</span><br><span class="line">　　git push -u origin master //把本地库的所有内容推送到远程库上</span><br><span class="line">　　</span><br><span class="line">Git复制指令(或者直接鼠标右键菜单栏选择)：</span><br><span class="line">复制：Ctrl+INSERT</span><br><span class="line">粘贴：Shift+INSERT</span><br></pre></td></tr></table></figure>
-
-<h3 id="项目上传"><a href="#项目上传" class="headerlink" title="项目上传"></a>项目上传</h3><h4 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h4><p>可分为两步，第一步是搭建本地仓库，第二步是关联上传到github项目仓库。</p>
-<h5 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h5><p>首先在本机项目文件夹下打开git-bash.exe</p>
-<ol>
-<li><p>执行指令： git init </p>
-<p>将这个目录变为Git可以管理的仓库，初始化成功后你会发现项目里多了一个隐藏文件夹.git<img src="/images/24-1.png" alt="屏幕截图 2024-11-09 224813"></p>
-</li>
-<li><p>执行指令：git add . </p>
-<p>后面的点是个通配符，把所有文件都添加到本地仓库，也可以跟单一文件名添加单一文件。<img src="/images/24-2.png" alt="屏幕截图 2024-11-09 225518"></p>
-</li>
-<li><p>执行指令：git commit -m “【注释】”</p>
-<p>把所有文件都提交到本地仓库，双引号里的内容是本次提交的注释<img src="/images/24-3.png" alt="屏幕截图 2024-11-09 230904"></p>
-</li>
-</ol>
-<h5 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h5><ol>
-<li><p>在github上新建一个repository，名字随便取，随后复制ssh仓库地址<img src="/images/24-4.png" alt="屏幕截图 2024-11-09 230527"></p>
-</li>
-<li><p>在本地之前那个bash窗口，执行：git remote add origin <a href="mailto:&#103;&#x69;&#x74;&#x40;&#103;&#105;&#x74;&#104;&#117;&#x62;&#46;&#x63;&#x6f;&#109;">&#103;&#x69;&#x74;&#x40;&#103;&#105;&#x74;&#104;&#117;&#x62;&#46;&#x63;&#x6f;&#109;</a>:Roricallry&#x2F;handwriting-numerals-recognition.git<img src="/images/24-5.png" alt="屏幕截图 2024-11-09 231016"></p>
-</li>
-<li><p>执行：git push -u origin master</p>
-<p>将本地仓库上传到GitHub对应项目仓库的master分支<img src="/images/24-6.png" alt="屏幕截图 2024-11-09 231210"></p>
-</li>
-</ol>
-<p>至此，项目文件已上传到Github上，可在对应项目的对应分支进行查看。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git pull origin master --rebase</span><br></pre></td></tr></table></figure>
-
-<p><code>git pull origin master --rebase</code> 会拉取远程分支的更改并在本地更改的基础上应用它们，这样可以减少冲突。</p>
-<h3 id="常见问题与解决方案"><a href="#常见问题与解决方案" class="headerlink" title="常见问题与解决方案"></a>常见问题与解决方案</h3><p>如果远程仓库的提交记录与本地记录不一致，会导致提交失败，此时需对本地仓库进行更新再重新修改上传(防止多人协作时版本不一)</p>
-<p>如果是个人开发，不考虑其他人，后面直接加   –force   （会覆盖远程仓库的历史）<img src="/images/24-7.png" alt="7"></p>
-<p>下面这个错误是因为本地分支的名称是 <code>master</code>，而不是 <code>main</code>。因此，Git无法找到一个名为 <code>main</code> 的分支来推送。<img src="/images/24-8.png" alt="8"></p>
-<p>解决办法有</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">\# 重命名本地的 master 分支为 main </span><br><span class="line">git branch -m master main </span><br><span class="line"><span class="comment"># 推送 main 分支到远程 </span></span><br><span class="line">git push -u origin main </span><br><span class="line"><span class="comment"># 设置默认分支为 main </span></span><br><span class="line">git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/main</span><br></pre></td></tr></table></figure>
-
-
-
-<p>单个文件不能超过50mb，本地提交记录中如果有超过50mb的文件的话也是会上传失败，建议（重开）重新克隆一个项目文件夹</p>
+    <title>CVE-2024-38816</title>
+    <url>/2025/04/27/CVE-2024-38816/</url>
+    <content><![CDATA[<h4 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h4><p><img src="/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE2025-04-27-232615.png"></p>
+<p>漏洞描述：</p>
+<p>Spring框架是 Java 平台的一个开源的全栈应用程序框架和控制反转容器实现。2024年9月，Spring官方发布公告披露 CVE-2024-38816 Spring Framework 特定条件下目录遍历漏洞。当同时满足使用 RouterFunctions 和 FileSystemResource 来处理和提供静态文件时，攻击者可构造恶意请求遍历读取系统上的文件。</p>
+<p>影响范围：<br>Spring Framework</p>
+<ul>
+<li>5.3.0 - 5.3.39</li>
+<li>6.0.0 - 6.0.23</li>
+<li>6.1.0 - 6.1.12</li>
+<li>Older, unsupported versions are also affected</li>
+</ul>
+<p>环境搭建：</p>
+<ul>
+<li>java版本:jdk 17</li>
+<li>服务器：netty</li>
+<li>构建工具：Gradle<br>pring boot版本:3.0.13对应spring framework 6.0.15</li>
+</ul>
+<p>项目依赖：Spring Reactive Web（webflux）</p>
+<p>漏洞代码：</p>
+<p><img src="/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE2025-04-29-162217.png"></p>
+<h4 id="漏洞成因"><a href="#漏洞成因" class="headerlink" title="漏洞成因"></a>漏洞成因</h4><p><a href="https://github.com/spring-projects/spring-framework/commit/d86bf8b2056429edf5494456cffcb2b243331c49#diff-25869a3e3b3d4960cb59b02235d71d192fdc4e02ef81530dd6a660802d4f8707">具体修复commit</a></p>
+<p>漏洞代码是PathResourceLookupFunction类中。</p>
+<p>在调用了RouterFunctions来处理路由时会来到PathResourceLookupFunction类的这个地方：<br><img src="/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE2025-04-29-161545.png"><br>（this.pattern是RouterFunctions.resources(“&#x2F;static&#x2F;<strong>“, new FileSystemResource(“ C:&#x2F; app&#x2F; static &#x2F; “))中的”&#x2F;static&#x2F;</strong>“，检测路径中是否包含”&#x2F;static&#x2F;“,若包含，则将后面的”**”与”C:&#x2F;app&#x2F;static&#x2F;“进行拼接。)</p>
+<p>代码首先对路径是否存在指定路径片段进行判断，然后在procrssPath中对路径进行简单处理：<br><img src="/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE2025-04-29-164801.png"></p>
+<p>去除路径开头的无效字符：忽略空格、控制字符等无效字符，找到第一个有效字符。</p>
+<p>保留根路径：如果路径开头有斜杠 &#x2F;，则确保处理后的路径以 &#x2F; 开头。</p>
+<p>快速返回有效路径：如果路径是根路径或有效路径已经以 &#x2F; 开头，直接返回，不做额外处理。</p>
+<p>然后会判断路径是否存在”%”进行一次url解码，然后进入isInvalidPath函数：<br><img src="/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE2025-04-29-164324.png"><br>我们需要的是返回false，看来能够返回的只有一个地方return path.contains(“..”) &amp;&amp; StringUtils.cleanPath(path).contains(“..&#x2F;“);，首先我们可以有..这种字符的存在，因为是&amp;符号连接的，所以终极目的就是StringUtils.cleanPath(path).contains(“..&#x2F;“)返回false，恰好cleanPath中存在漏洞可以绕过”..&#x2F;“的检测。</p>
+<p>下面是cleanPath函数分析:</p>
+<p><img src="/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE2025-04-29-215223.png"></p>
+<p>先将’\’转换为’&#x2F;’。<br><img src="/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE2025-04-29-215407.png"></p>
+<p>然后是将path以‘&#x2F;’进行分割成数组。<br><img src="/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE2025-04-29-215723.png"></p>
+<p>检测数组中是否存在’..’如果存在则将tops+1，但是当元素中不存在’.’或’..’时，就能用该元素去抵消一个’..’<br><img src="/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE2025-04-29-220622.png"><br>最后就是将prefix(path中的首字符)和pathElements进行拼接返回，回到isInvalidPath函数判断返回值中是否存在’..&#x2F;’<br><img src="/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE2025-04-29-221402.png"><br>回到apply函数，路径会经过createRelative函数处理，而该函数调用了OI函数，及使用操作系统的处理方法，如windows中的路径仅支持反斜杠，而斜杠会被当成一个正常字符。isReadable会判断路径是否存在并可读。<br><img src="/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE2025-04-30-164634.png"><br>isResourceUbderLocation中会再次url解码判断存在，但是只要路径中不存在’%’就可以绕过该检测。</p>
+<p>综上分析，像static&#x2F;/..&#x2F;**这样的路径在经过处理后会变成static&#x2F;..&#x2F;**。</p>
+<p><img src="/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE2025-04-30-165443.png"><br>但是在实际测试中，在进入apply函数之前，’\’就会被转换成’&#x2F;’。</p>
+<p>因此，利用上apply函数里面的第一个url解码，payload可以构造为static&#x2F;%5c&#x2F;%5c&#x2F;..&#x2F;..&#x2F;**，%5c的数量与..&#x2F;对应，可以穿越到任何路径。</p>
+<h4 id="漏洞测试"><a href="#漏洞测试" class="headerlink" title="漏洞测试"></a>漏洞测试</h4><p><img src="/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE2025-04-29-171942.png"><br>上图为漏洞存在证明。</p>
+<p>分析与评估漏洞影响：<br>-该漏洞能够导致系统任意文件的泄露，对数据保密性具有极高危害，配合其他漏洞，可能会造成更近一步危害。</p>
+<p>漏洞修复：</p>
+<ul>
+<li>升级 Spring 版本</li>
+<li>Spring Boot 3.x 用户：升级至 Spring Framework 6.1.13+8。</li>
+<li>Spring Boot 2.x 用户：官方未提供免费修复版本，需迁移至 Spring Boot 3.x38。</li>
+</ul>
+<p>临时缓解措施</p>
+<ul>
+<li>启用 Spring Security 的 HTTP 防火墙。</li>
+<li>避免显式使用 FileSystemResource，改用 ClassPathResource 限制资源路径。</li>
+<li>使用主流服务器Tomcat，Jetty。</li>
+</ul>
+<p>下面是Tomcat服务器运行示例，返回值400<br><img src="/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE2025-04-30-171552.png"></p>
 ]]></content>
       <tags>
-        <tag>Git</tag>
+        <tag>漏洞复现</tag>
       </tags>
   </entry>
   <entry>
@@ -585,6 +581,68 @@ mov eax, [eax -8h + 18h]   kernel32.Dll基址
 ]]></content>
       <tags>
         <tag>逆向</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Github_project_management</title>
+    <url>/2024/11/09/Github-project-management/</url>
+    <content><![CDATA[<p>​	关于将项目上传到github并进行管理，以及一些在使用过程中可能遇到的问题和解决方法。</p>
+<span id="more"></span>
+
+<blockquote>
+<p>Precondition:</p>
+<ol>
+<li>有一个github账号</li>
+<li>下载安装Git</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>github常用的两种连接方式：</p>
+<p>https连接，如：<code>https://github.com/Roricallry/handwriting-numerals-recognition.git</code></p>
+<p>ssh连接，如：<code>git@github.com:Roricallry/handwriting-numerals-recognition.git</code></p>
+<p>https连接每次都需要密码，ssh连接可以做到无密码连接</p>
+</blockquote>
+<p>Git常用指令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git init //把这个目录变成Git可以管理的仓库</span><br><span class="line">　　git add README.md //文件添加到仓库</span><br><span class="line">　　git add . //不但可以跟单一文件，还可以跟通配符，更可以跟目录。一个点就把当前目录下所有未追踪的文件全部add了 </span><br><span class="line">　　git commit -m &quot;first commit&quot; //把文件提交到仓库</span><br><span class="line">　　git remote add origin git@github.com:wangjiax9/practice.git //关联远程仓库</span><br><span class="line">　　git push -u origin master //把本地库的所有内容推送到远程库上</span><br><span class="line">　　</span><br><span class="line">Git复制指令(或者直接鼠标右键菜单栏选择)：</span><br><span class="line">复制：Ctrl+INSERT</span><br><span class="line">粘贴：Shift+INSERT</span><br></pre></td></tr></table></figure>
+
+<h3 id="项目上传"><a href="#项目上传" class="headerlink" title="项目上传"></a>项目上传</h3><h4 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h4><p>可分为两步，第一步是搭建本地仓库，第二步是关联上传到github项目仓库。</p>
+<h5 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h5><p>首先在本机项目文件夹下打开git-bash.exe</p>
+<ol>
+<li><p>执行指令： git init </p>
+<p>将这个目录变为Git可以管理的仓库，初始化成功后你会发现项目里多了一个隐藏文件夹.git<img src="/images/24-1.png" alt="屏幕截图 2024-11-09 224813"></p>
+</li>
+<li><p>执行指令：git add . </p>
+<p>后面的点是个通配符，把所有文件都添加到本地仓库，也可以跟单一文件名添加单一文件。<img src="/images/24-2.png" alt="屏幕截图 2024-11-09 225518"></p>
+</li>
+<li><p>执行指令：git commit -m “【注释】”</p>
+<p>把所有文件都提交到本地仓库，双引号里的内容是本次提交的注释<img src="/images/24-3.png" alt="屏幕截图 2024-11-09 230904"></p>
+</li>
+</ol>
+<h5 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h5><ol>
+<li><p>在github上新建一个repository，名字随便取，随后复制ssh仓库地址<img src="/images/24-4.png" alt="屏幕截图 2024-11-09 230527"></p>
+</li>
+<li><p>在本地之前那个bash窗口，执行：git remote add origin <a href="mailto:&#103;&#105;&#x74;&#x40;&#103;&#105;&#x74;&#104;&#117;&#x62;&#46;&#99;&#x6f;&#x6d;">&#103;&#105;&#x74;&#x40;&#103;&#105;&#x74;&#104;&#117;&#x62;&#46;&#99;&#x6f;&#x6d;</a>:Roricallry&#x2F;handwriting-numerals-recognition.git<img src="/images/24-5.png" alt="屏幕截图 2024-11-09 231016"></p>
+</li>
+<li><p>执行：git push -u origin master</p>
+<p>将本地仓库上传到GitHub对应项目仓库的master分支<img src="/images/24-6.png" alt="屏幕截图 2024-11-09 231210"></p>
+</li>
+</ol>
+<p>至此，项目文件已上传到Github上，可在对应项目的对应分支进行查看。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git pull origin master --rebase</span><br></pre></td></tr></table></figure>
+
+<p><code>git pull origin master --rebase</code> 会拉取远程分支的更改并在本地更改的基础上应用它们，这样可以减少冲突。</p>
+<h3 id="常见问题与解决方案"><a href="#常见问题与解决方案" class="headerlink" title="常见问题与解决方案"></a>常见问题与解决方案</h3><p>如果远程仓库的提交记录与本地记录不一致，会导致提交失败，此时需对本地仓库进行更新再重新修改上传(防止多人协作时版本不一)</p>
+<p>如果是个人开发，不考虑其他人，后面直接加   –force   （会覆盖远程仓库的历史）<img src="/images/24-7.png" alt="7"></p>
+<p>下面这个错误是因为本地分支的名称是 <code>master</code>，而不是 <code>main</code>。因此，Git无法找到一个名为 <code>main</code> 的分支来推送。<img src="/images/24-8.png" alt="8"></p>
+<p>解决办法有</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">\# 重命名本地的 master 分支为 main </span><br><span class="line">git branch -m master main </span><br><span class="line"><span class="comment"># 推送 main 分支到远程 </span></span><br><span class="line">git push -u origin main </span><br><span class="line"><span class="comment"># 设置默认分支为 main </span></span><br><span class="line">git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/main</span><br></pre></td></tr></table></figure>
+
+
+
+<p>单个文件不能超过50mb，本地提交记录中如果有超过50mb的文件的话也是会上传失败，建议（重开）重新克隆一个项目文件夹</p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
       </tags>
   </entry>
 </search>
